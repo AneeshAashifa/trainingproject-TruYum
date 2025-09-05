@@ -77,12 +77,12 @@ namespace TruYum.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Description")
                         .IsRequired()
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
+
+                    b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("LaunchDate")
@@ -90,14 +90,20 @@ namespace TruYum.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<bool>("Veg")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
-                    b.ToTable("MenuItems");
+                    b.ToTable("MenuItems", (string)null);
+
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("TruYum.Api.Models.User", b =>
@@ -108,9 +114,10 @@ namespace TruYum.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("PasswordHash")
+                    b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("PasswordHash");
 
                     b.Property<string>("Role")
                         .IsRequired()
@@ -123,6 +130,55 @@ namespace TruYum.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("TruYum.Api.Models.Beverage", b =>
+                {
+                    b.HasBaseType("TruYum.Api.Models.MenuItem");
+
+                    b.Property<bool>("IsIced")
+                        .HasColumnType("bit");
+
+                    b.Property<double>("VolumeMl")
+                        .HasColumnType("float");
+
+                    b.ToTable("Beverages", (string)null);
+                });
+
+            modelBuilder.Entity("TruYum.Api.Models.MainCourse", b =>
+                {
+                    b.HasBaseType("TruYum.Api.Models.MenuItem");
+
+                    b.Property<string>("Cuisine")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Size")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("MainCourses", (string)null);
+                });
+
+            modelBuilder.Entity("TruYum.Api.Models.Snack", b =>
+                {
+                    b.HasBaseType("TruYum.Api.Models.MenuItem");
+
+                    b.Property<bool>("Baked")
+                        .HasColumnType("bit");
+
+                    b.ToTable("Snacks", (string)null);
+                });
+
+            modelBuilder.Entity("TruYum.Api.Models.Starter", b =>
+                {
+                    b.HasBaseType("TruYum.Api.Models.MenuItem");
+
+                    b.Property<int>("Serves")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Spicy")
+                        .HasColumnType("bit");
+
+                    b.ToTable("Starters", (string)null);
                 });
 
             modelBuilder.Entity("TruYum.Api.Models.Cart", b =>
@@ -153,6 +209,42 @@ namespace TruYum.Migrations
                     b.Navigation("Cart");
 
                     b.Navigation("MenuItem");
+                });
+
+            modelBuilder.Entity("TruYum.Api.Models.Beverage", b =>
+                {
+                    b.HasOne("TruYum.Api.Models.MenuItem", null)
+                        .WithOne()
+                        .HasForeignKey("TruYum.Api.Models.Beverage", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TruYum.Api.Models.MainCourse", b =>
+                {
+                    b.HasOne("TruYum.Api.Models.MenuItem", null)
+                        .WithOne()
+                        .HasForeignKey("TruYum.Api.Models.MainCourse", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TruYum.Api.Models.Snack", b =>
+                {
+                    b.HasOne("TruYum.Api.Models.MenuItem", null)
+                        .WithOne()
+                        .HasForeignKey("TruYum.Api.Models.Snack", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TruYum.Api.Models.Starter", b =>
+                {
+                    b.HasOne("TruYum.Api.Models.MenuItem", null)
+                        .WithOne()
+                        .HasForeignKey("TruYum.Api.Models.Starter", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TruYum.Api.Models.Cart", b =>
