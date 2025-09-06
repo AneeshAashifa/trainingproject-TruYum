@@ -1,0 +1,44 @@
+<h2>Admin Dashboard</h2>
+
+<!-- Add new menu item -->
+<h3 class="mt-4">Add New Item</h3>
+<form (ngSubmit)="addMenuItem()">
+  <input [(ngModel)]="newItem.name" name="name" placeholder="Name" required>
+  <input [(ngModel)]="newItem.description" name="description" placeholder="Description" required>
+  <input [(ngModel)]="newItem.price" name="price" type="number" placeholder="Price" required>
+  <input [(ngModel)]="newItem.imageUrl" name="imageUrl" placeholder="Image URL">
+
+  <select [(ngModel)]="newItem.category" name="category">
+    <option value="beverages">Beverages</option>
+    <option value="starters">Starters</option>
+    <option value="maincourses">Main Courses</option>
+    <option value="snacks">Snacks</option>
+  </select>
+
+  <label>
+    Active: <input type="checkbox" [(ngModel)]="newItem.active" name="active">
+  </label>
+
+  <button type="submit" class="btn btn-primary btn-sm">Add</button>
+</form>
+
+<hr>
+
+<!-- Manage existing items -->
+<h3 class="mt-4">Menu Items</h3>
+<div class="row g-3">
+  <div class="col-md-4" *ngFor="let item of menuItems">
+    <div class="card h-100 shadow-sm">
+      <img [src]="item.imageUrl || 'assets/images/default-food.jpg'" class="card-img-top" alt="{{item.name}}">
+      <div class="card-body">
+        <h5 class="card-title">{{ item.name }}</h5>
+        <p>{{ item.description }}</p>
+        <p class="fw-bold">₹ {{ item.price }}</p>
+        <span class="badge bg-info">{{ item.category }}</span>
+      </div>
+      <div class="card-footer text-center">
+        <button (click)="deleteMenuItem(item)" class="btn btn-danger btn-sm">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

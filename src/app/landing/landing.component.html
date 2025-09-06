@@ -1,0 +1,17 @@
+<div class="landing-container text-center">
+  <h1 class="mb-4">Welcome to TruYum 🍽</h1>
+  <p class="lead mb-5">Delicious meals delivered fresh</p>
+
+  <div class="row g-4">
+    <div class="col-md-3" *ngFor="let cat of ['Beverages','Starters','MainCourses','Snacks']">
+      <div class="card h-100 shadow-sm" (click)="goToMenu(cat.toLowerCase())">
+        <img [src]="'assets/images/' + cat.toLowerCase() + '.jpg'" class="card-img-top" alt="{{cat}}" />
+        <div class="card-body">
+          <h5 class="card-title">{{ cat }}</h5>
+          <p class="card-text">Explore our {{cat}} selection</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
