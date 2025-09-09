@@ -1,6 +1,28 @@
-<h2>Admin Login</h2>
-<form (ngSubmit)="login()">
-  <input [(ngModel)]="creds.username" name="username" placeholder="Admin Username" required><br>
-  <input [(ngModel)]="creds.password" name="password" type="password" placeholder="Password" required><br>
-  <button type="submit">Login</button>
-</form>
+<div class="auth-container">
+  <mat-card class="auth-card">
+    <h2>Admin Login</h2>
+
+    <form [formGroup]="adminLoginForm" (ngSubmit)="onAdminLogin()">
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Admin Username</mat-label>
+        <input matInput formControlName="username" required>
+        <mat-error *ngIf="adminLoginForm.get('username')?.hasError('required')">
+          Username is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" required>
+        <mat-error *ngIf="adminLoginForm.get('password')?.hasError('required')">
+          Password is required
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="warn" class="full-width" [disabled]="adminLoginForm.invalid">
+        Login
+      </button>
+    </form>
+  </mat-card>
+</div>

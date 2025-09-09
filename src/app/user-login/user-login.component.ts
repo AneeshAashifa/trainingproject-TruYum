@@ -1,37 +1,53 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { SignalrService } from '../services/signalr.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-user-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [ReactiveFormsModule,MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSnackBarModule
+],
   templateUrl: './user-login.component.html'
 })
 export class UserLoginComponent {
-  creds = { username: '', password: '' };
+  loginForm: FormGroup;
   private apiUrl = 'http://localhost:5030/api/auth/login';
 
-  constructor(private http: HttpClient, private router: Router,private signalr: SignalrService) {}
-
-  login() {
-    this.http.post<any>(this.apiUrl, this.creds).subscribe({
-      next: (res) => {
-        if (res.role === 'User') {
-          localStorage.setItem('token', res.token);
-          localStorage.setItem('role', res.role);
-          this.signalr.startConnection();
-          alert('✅ User login successful!');
-          this.router.navigate(['/menu']);
-        } else {
-          alert('❌ This account is not an User.');
-        }
-      },
-      error: (err) => {
-        alert('❌ Login failed: ' + err.error);
-      }
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
+
+  onLogin() {
+    if (this.loginForm.invalid) return;
+
+    this.http.post<any>(this.apiUrl, this.loginForm.value).subscribe({
+      next: (res) => {
+        localStorage.setItem('token', res.token);
+        this.snackBar.open('✅ Login successful!', 'Close', { duration: 3000 });
+        this.router.navigate(['/menu']);
+      },
+      error: (err) => {
+        this.snackBar.open('❌ Login failed: ' + (err.error?.title || err.message), 'Close', { duration: 3000 });
+      }
+    });
+  }
 }
