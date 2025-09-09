@@ -1,0 +1,46 @@
+.admin-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+form.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+form input, form select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+form button {
+  background-color: #28a745;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+form button:hover {
+  background-color: #218838;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  background-color: #f8f9fa;
+}

@@ -1,44 +1,63 @@
-<h2>Admin Dashboard</h2>
+<div class="admin-container">
+  <h2>📋 Admin Dashboard</h2>
 
-<!-- Add new menu item -->
-<h3 class="mt-4">Add New Item</h3>
-<form (ngSubmit)="addMenuItem()">
-  <input [(ngModel)]="newItem.name" name="name" placeholder="Name" required>
-  <input [(ngModel)]="newItem.description" name="description" placeholder="Description" required>
-  <input [(ngModel)]="newItem.price" name="price" type="number" placeholder="Price" required>
-  <input [(ngModel)]="newItem.imageUrl" name="imageUrl" placeholder="Image URL">
+  <!-- Add Item Form -->
+  <form (ngSubmit)="addMenuItem()" #menuForm="ngForm" class="form">
+    <input [(ngModel)]="newItem.name" name="name" placeholder="Name" required />
+    <input [(ngModel)]="newItem.description" name="description" placeholder="Description" required />
+    <input [(ngModel)]="newItem.price" type="number" name="price" placeholder="Price" required />
+    <select [(ngModel)]="newItem.category" name="category" required>
+      <option>Beverage</option>
+      <option>Starter</option>
+      <option>MainCourse</option>
+      <option>Snack</option>
+    </select>
+    <input [(ngModel)]="newItem.imageUrl" name="imageUrl" placeholder="Image URL" />
+    <button type="submit">➕ Add Item</button>
+  </form>
 
-  <select [(ngModel)]="newItem.category" name="category">
-    <option value="beverages">Beverages</option>
-    <option value="starters">Starters</option>
-    <option value="maincourses">Main Courses</option>
-    <option value="snacks">Snacks</option>
-  </select>
+  <!-- Items Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Active</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- List items -->
+      <tr *ngFor="let item of menuItems">
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
+        <td>₹{{ item.price }}</td>
+        <td>{{ item.category }}</td>
+        <td>{{ item.active ? '✅' : '❌' }}</td>
+        <td>
+          <button (click)="editMenuItem(item)">✏️ Edit</button>
+          <button (click)="deleteMenuItem(item)">🗑️ Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-  <label>
-    Active: <input type="checkbox" [(ngModel)]="newItem.active" name="active">
-  </label>
-
-  <button type="submit" class="btn btn-primary btn-sm">Add</button>
-</form>
-
-<hr>
-
-<!-- Manage existing items -->
-<h3 class="mt-4">Menu Items</h3>
-<div class="row g-3">
-  <div class="col-md-4" *ngFor="let item of menuItems">
-    <div class="card h-100 shadow-sm">
-      <img [src]="item.imageUrl || 'assets/images/default-food.jpg'" class="card-img-top" alt="{{item.name}}">
-      <div class="card-body">
-        <h5 class="card-title">{{ item.name }}</h5>
-        <p>{{ item.description }}</p>
-        <p class="fw-bold">₹ {{ item.price }}</p>
-        <span class="badge bg-info">{{ item.category }}</span>
-      </div>
-      <div class="card-footer text-center">
-        <button (click)="deleteMenuItem(item)" class="btn btn-danger btn-sm">Delete</button>
-      </div>
-    </div>
+  <!-- Edit Form -->
+  <div *ngIf="editingItem" class="edit-form">
+    <h3>✏️ Edit Item</h3>
+    <input [(ngModel)]="editingItem.name" name="editName" placeholder="Name" />
+    <input [(ngModel)]="editingItem.description" name="editDescription" placeholder="Description" />
+    <input [(ngModel)]="editingItem.price" type="number" name="editPrice" placeholder="Price" />
+    <select [(ngModel)]="editingItem.category" name="editCategory">
+      <option>Beverage</option>
+      <option>Starter</option>
+      <option>MainCourse</option>
+      <option>Snack</option>
+    </select>
+    <input [(ngModel)]="editingItem.imageUrl" name="editImageUrl" placeholder="Image URL" />
+    <button (click)="updateMenuItem()">💾 Save</button>
+    <button (click)="cancelEdit()">❌ Cancel</button>
   </div>
 </div>
