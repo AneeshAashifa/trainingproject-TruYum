@@ -1,0 +1,15 @@
+.order-history-card {
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 900px;
+}
+
+.full-width-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+ul {
+  margin: 0;
+  padding-left: 15px;
+}

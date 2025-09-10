@@ -13,11 +13,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule,
-    MatCardModule,
-    MatTableModule,
-    MatButtonModule,
-    MatIconModule
+  imports: [CommonModule, MatCardModule, MatTableModule, MatButtonModule, MatIconModule
 ],
   templateUrl: './cart.component.html',
    styleUrls: ['./cart.component.css']
@@ -41,16 +37,39 @@ export class CartComponent implements OnInit {
       this.signalr.startConnection(() => {
         this.signalr.on('CartUpdated', (payload) => { this.cart = payload; });
         this.signalr.on('OrderPlaced', (payload) => {
-          alert(`✅ Order placed! Total: ₹${payload.total ?? payload.Total ?? payload.TotalAmount ?? ''}`);
+          alert(`✅ Order placed! Total: ₹${payload.total ?? payload.Total}`);
         });
       });
     }
+  }
+
+  get totalAmount(): number {
+    if (!this.cart?.items) return 0;
+    return this.cart.items.reduce((sum: number, item: any) => {
+      const price = item.menuItem?.price || item.MenuItem?.Price || 0;
+      const qty = item.quantity || item.Quantity || 0;
+      return sum + price * qty;
+    }, 0);
   }
 
   loadCart() {
     this.cartService.getCart().subscribe({
       next: res => this.cart = res,
       error: err => console.error('Error fetching cart', err)
+    });
+  }
+
+  increase(item: any) {
+    this.cartService.increaseQuantity(item.menuItemId || item.MenuItemId).subscribe({
+      next: () => this.loadCart(),
+      error: err => alert('Failed to increase: ' + err.message)
+    });
+  }
+
+  decrease(item: any) {
+    this.cartService.decreaseQuantity(item.menuItemId || item.MenuItemId).subscribe({
+      next: () => this.loadCart(),
+      error: err => alert('Failed to decrease: ' + err.message)
     });
   }
 
@@ -61,13 +80,12 @@ export class CartComponent implements OnInit {
     });
   }
 
-  placeOrder() {
+  checkout() {
     this.ordersService.placeOrder().subscribe({
       next: (res: any) => {
-        alert('✅ Order placed! Total: ₹' + (res.total || res.Total));
-        this.cart = { items: [] };
+        this.router.navigate(['/order-confirmation'], { state: { order: res } });
       },
-      error: err => alert('Failed to place order: ' + err.message)
+      error: err => alert('Checkout failed: ' + err.message)
     });
   }
 

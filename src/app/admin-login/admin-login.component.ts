@@ -47,7 +47,7 @@ export class AdminLoginComponent {
       },
       error: (err) => {
         this.snackBar.open('❌ Admin login failed: ' + (err.error?.title || err.message), 'Close', { duration: 3000 });
-      }
-    });
-  }
+      }
+    });
+  }
 }

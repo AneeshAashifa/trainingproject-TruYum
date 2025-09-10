@@ -1,0 +1,21 @@
+.order-card {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.order-card h2 {
+  color: green;
+  margin-bottom: 20px;
+}
+
+.order-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.order-card ul li {
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}

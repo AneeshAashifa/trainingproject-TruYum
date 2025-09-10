@@ -8,7 +8,8 @@ import { RegisterComponent } from './register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { OrderPlacedComponent } from './order-placed/order-placed.component';
 import { LoginChoiceComponent } from './login-choice/login-choice.component';
-
+import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
+import { OrderHistoryComponent } from './order-history/order-history.component';
 export const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginChoiceComponent },
@@ -19,5 +20,7 @@ export const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'order-placed', component: OrderPlacedComponent },
+  { path: 'order-confirmation', component: OrderConfirmationComponent},
+  { path: 'order-history', component: OrderHistoryComponent},
   { path: '**', redirectTo: '' }
 ];

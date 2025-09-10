@@ -12,4 +12,6 @@ export class CartService {
   getCart(): Observable<any> { return this.http.get(this.apiUrl); }
   addToCart(menuItemId: number) { return this.http.post(`${this.apiUrl}/add/${menuItemId}`, {}); }
   removeFromCart(menuItemId: number) { return this.http.delete(`${this.apiUrl}/remove/${menuItemId}`); }
+  increaseQuantity(menuItemId: number) { return this.http.post(`${this.apiUrl}/increase/${menuItemId}`, {}); }
+  decreaseQuantity(menuItemId: number) { return this.http.post(`${this.apiUrl}/decrease/${menuItemId}`, {}); }
 }
