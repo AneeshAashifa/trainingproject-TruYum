@@ -1,0 +1,24 @@
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.menu-card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+mat-card-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+mat-card-subtitle {
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+mat-chip {
+  margin-right: 6px;
+}
