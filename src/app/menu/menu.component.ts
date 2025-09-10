@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CartService } from '../services/cart.service';
 import { SignalrService } from '../services/signalr.service';
 import { environment } from '../../environments/environments';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -30,11 +31,16 @@ export class MenuComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private cartService: CartService,
-    private signalr: SignalrService
+    private signalr: SignalrService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.fetchMenu();
+    this.route.queryParams.subscribe(params => {
+      const category = params['category'];
+      this.fetchMenu(category);
+    });
+
     if (localStorage.getItem('token')) {
       this.signalr.startConnection();
     }
@@ -42,7 +48,7 @@ export class MenuComponent implements OnInit {
 
   fetchMenu(category?: string) {
     let url = this.menuApi;
-    if (category) url = `${this.menuApi}/category/${category}`;
+    if (category) url = `${this.menuApi}?category=${category}`;
     this.http.get<any[]>(url).subscribe({
       next: res => (this.menuItems = res),
       error: err => console.error('Error fetching menu:', err)

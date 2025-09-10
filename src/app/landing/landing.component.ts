@@ -15,8 +15,10 @@ export class LandingComponent implements OnInit {
   ngOnInit() {}
 
   goToMenu(category?: string) {
-    if (category) this.router.navigate(['/menu'], { queryParams: { category } });
-    else this.router.navigate(['/menu']);
+    if (category) {
+      this.router.navigate(['/menu'], { queryParams: { category } });
+    }
+    else{ this.router.navigate(['/menu']);
   }
 }
-
+}

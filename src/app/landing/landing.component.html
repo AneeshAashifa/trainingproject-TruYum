@@ -3,7 +3,7 @@
   <p class="lead mb-5">Delicious meals delivered fresh</p>
 
   <div class="row g-4">
-    <div class="col-md-3" *ngFor="let cat of ['Beverages','Starters','MainCourses','Snacks']">
+    <div class="col-md-3" *ngFor="let cat of ['Beverage','Starter','MainCourse','Snack']">
       <div class="card h-100 shadow-sm" (click)="goToMenu(cat.toLowerCase())">
         <img [src]="'assets/images/' + cat.toLowerCase() + '.jpg'" class="card-img-top" alt="{{cat}}" />
         <div class="card-body">
