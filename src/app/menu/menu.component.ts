@@ -52,7 +52,7 @@ export class MenuComponent implements OnInit {
   addToCart(item: any) {
     this.cartService.addToCart(item.id).subscribe({
       next: () => {
-        alert(`✅ Added ${item.name} to cart `);
+        alert(`✅ Added ${item.name} to cart`);
       },
       error: err =>
         alert('❌ Failed to add: ' + (err.error || err.message))

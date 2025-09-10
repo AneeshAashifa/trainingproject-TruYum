@@ -19,3 +19,4 @@ export class LandingComponent implements OnInit {
     else this.router.navigate(['/menu']);
   }
 }
+
