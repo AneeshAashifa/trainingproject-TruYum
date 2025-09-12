@@ -1,0 +1,10 @@
+:host {
+  display: block;
+  min-width: 300px;
+}
+
+div[mat-dialog-content] {
+  margin: 12px 0;
+  font-size: 14px;
+  color: #444;
+}

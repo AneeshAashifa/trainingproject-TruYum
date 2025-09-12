@@ -1,7 +1,7 @@
 .dialog-form {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 16px;
 }
 
 .full {
@@ -9,12 +9,9 @@
 }
 
 .half {
-  flex: 1 1 calc(50% - 12px);
-  min-width: 180px;
+  flex: 1 1 calc(50% - 8px);
 }
 
 .actions {
   margin-top: 16px;
-  display: flex;
-  gap: 12px;
 }

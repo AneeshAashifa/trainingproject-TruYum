@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-admin-dashboard',
@@ -29,6 +30,7 @@ import { Router } from '@angular/router';
     MatSnackBarModule,
     MatFormFieldModule,
     MatTabsModule,
+    MatInputModule,
     AdminEditDialogComponent,
     ConfirmDialogComponent,
   ],
