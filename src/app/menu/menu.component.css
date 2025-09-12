@@ -22,3 +22,17 @@ mat-card-subtitle {
 mat-chip {
   margin-right: 6px;
 }
+.menu-card {
+  border-radius: 10px;
+  overflow: hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.item-grid .thumb { height: 90px; }
+
+.menu-card h3 { font-size: 18px; margin-bottom:4px; }
+
+.add-cart { background: linear-gradient(90deg,var(--primary), #115293); color:white; }
+.add-cart mat-icon { margin-right:6px; }

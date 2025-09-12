@@ -1,7 +1,79 @@
-body {
-  font-family: "Roboto", sans-serif;
-  margin: 0;
+:root{
+  --primary:#1976d2; /* material blue */
+  --accent:#ff7043;
+  --surface:#ffffff;
+  --muted:#6b7280;
 }
+
+html,body {
+  font-family: "Inter", Arial, sans-serif;
+  margin:0;
+  padding:0;
+  background:#fafafa;
+  color:#222;
+}
+
+/* container */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* button override for consistent shape */
+.mat-raised-button, .mat-flat-button {
+  border-radius: 8px;
+  text-transform: none;
+  font-weight: 600;
+}
+
+/* simple chip look (veg/non-veg) */
+.emoji-chip {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 8px;
+  border-radius:16px;
+  font-size:13px;
+  border:1px solid rgba(0,0,0,0.08);
+  background:#fff;
+}
+.emoji-chip.veg { color:#1b7a3a; border-color: rgba(27,122,58,0.12); }
+.emoji-chip.non-veg { color:#b03030; border-color: rgba(176,48,48,0.12); }
+
+/* card image grid small thumbnails */
+.item-grid {
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:6px;
+}
+.thumb {
+  width:100%;
+  height:86px;
+  object-fit:cover;
+  border-radius:6px;
+}
+
+/* Add to cart custom button */
+.add-cart {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 14px;
+  border-radius:20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* responsive grid for menu cards */
+.menu-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap:28px;
+}
+
+/* small spacing in cards */
+.menu-card .mat-card-content { padding: 16px 16px 20px 16px; }
+
 
 .card {
   border-radius: 12px;
@@ -64,7 +136,4 @@ h2 {
 .full-width {
   width: 100%;
   margin-bottom: 15px;
-}
-button.mat-raised-button {
-  border-radius: 8px; /* make corners smoother */
 }

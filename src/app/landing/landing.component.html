@@ -1,16 +1,30 @@
-<div class="landing-container text-center">
-  <h1 class="mb-4">Welcome to TruYum 🍽</h1>
-  <p class="lead mb-5">Delicious meals delivered fresh</p>
+<div class="app-container" style="text-align:center;padding-top:40px;padding-bottom:32px">
+  <h1 style="font-size:34px;margin-bottom:8px">Welcome to TruYum 🍽</h1>
+  <p style="color:var(--muted);margin-bottom:20px">Delicious meals delivered fresh</p>
 
-  <div class="row g-4">
-    <div class="col-md-3" *ngFor="let cat of ['Beverage','Starter','MainCourse','Snack']">
-      <div class="card h-100 shadow-sm" (click)="goToMenu(cat.toLowerCase())">
-        <img [src]="'assets/images/' + cat.toLowerCase() + '.jpg'" class="card-img-top" alt="{{cat}}" />
-        <div class="card-body">
-          <h5 class="card-title">{{ cat }}</h5>
-          <p class="card-text">Explore our {{cat}} selection</p>
-        </div>
-      </div>
-    </div>
+  <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:20px">
+    <a mat-card class="mat-elevation-z2" style="width:240px;text-align:center;padding:10px;text-decoration:none;color:inherit" routerLink="/menu?category=Beverage">
+      <img src="assets/images/beverage.jpg" style="width:100%;height:140px;object-fit:cover;border-radius:8px">
+      <h3 style="margin:12px 0 6px">Beverage</h3>
+      <p style="color:var(--muted);margin:0">Explore our Beverage selection</p>
+    </a>
+
+    <a mat-card class="mat-elevation-z2" style="width:240px;text-align:center;padding:10px;text-decoration:none;color:inherit" routerLink="/menu?category=Starter">
+      <img src="assets/images/starter.jpg" style="width:100%;height:140px;object-fit:cover;border-radius:8px">
+      <h3 style="margin:12px 0 6px">Starter</h3>
+      <p style="color:var(--muted);margin:0">Explore our Starter selection</p>
+    </a>
+
+    <a mat-card class="mat-elevation-z2" style="width:240px;text-align:center;padding:10px;text-decoration:none;color:inherit" routerLink="/menu?category=MainCourse">
+      <img src="assets/images/maincourse.jpg" style="width:100%;height:140px;object-fit:cover;border-radius:8px">
+      <h3 style="margin:12px 0 6px">MainCourse</h3>
+      <p style="color:var(--muted);margin:0">Explore our MainCourse selection</p>
+    </a>
+
+    <a mat-card class="mat-elevation-z2" style="width:240px;text-align:center;padding:10px;text-decoration:none;color:inherit" routerLink="/menu?category=Snack">
+      <img src="assets/images/snack.jpg" style="width:100%;height:140px;object-fit:cover;border-radius:8px">
+      <h3 style="margin:12px 0 6px">Snack</h3>
+      <p style="color:var(--muted);margin:0">Explore our Snack selection</p>
+    </a>
   </div>
 </div>

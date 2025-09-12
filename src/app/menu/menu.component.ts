@@ -54,6 +54,8 @@ export class MenuComponent implements OnInit {
       error: err => console.error('Error fetching menu:', err)
     });
   }
+  toggleFavourite(item:any){ /* optional */ }
+
 
   addToCart(item: any) {
     this.cartService.addToCart(item.id).subscribe({
