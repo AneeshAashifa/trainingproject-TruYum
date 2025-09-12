@@ -1,52 +1,62 @@
-import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SignalrService } from '../services/signalr.service';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-admin-login',
   standalone: true,
-  imports: [ReactiveFormsModule,MatCardModule,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule,
-    MatSnackBarModule
-],
-  templateUrl: './admin-login.component.html'
+    MatButtonModule
+  ],
+  templateUrl: './admin-login.component.html',
+  styleUrls: ['./admin-login.component.css']
 })
-export class AdminLoginComponent {
-  adminLoginForm: FormGroup;
-  private apiUrl = 'http://localhost:5030/api/auth/login';
+export class AdminLoginComponent implements OnInit {
+  loginForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient,
-    private router: Router,
-    private snackBar: MatSnackBar
-  ) {
-    this.adminLoginForm = this.fb.group({
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    // ✅ Initialize inside ngOnInit (fb is available here)
+    this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
 
-  onAdminLogin() {
-    if (this.adminLoginForm.invalid) return;
+  onSubmit() {
+    if (this.loginForm.invalid) return;
 
-    this.http.post<any>(this.apiUrl, this.adminLoginForm.value).subscribe({
-      next: (res) => {
+    this.authService.login(this.loginForm.value).subscribe({
+      next: (res: any) => {
         localStorage.setItem('token', res.token);
-        this.snackBar.open('✅ Admin login successful!', 'Close', { duration: 3000 });
-        this.router.navigate(['/admin']);
+        localStorage.setItem('role', res.role);
+
+        if (res.role === 'Admin') {
+          this.router.navigate(['/admin-dashboard']);
+        } else {
+          alert('Access denied: Only admins can login here.');
+          localStorage.clear();
+          this.router.navigate(['/user-login']);
+        }
       },
-      error: (err) => {
-        this.snackBar.open('❌ Admin login failed: ' + (err.error?.title || err.message), 'Close', { duration: 3000 });
+      error: () => {
+        alert('❌ Invalid username or password');
       }
     });
   }
