@@ -1,10 +1,84 @@
-.login-card {
-  max-width: 400px;
-  margin: 100px auto;
-  padding: 20px;
-  text-align: center;
+/* Container with background */
+.admin-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #e3f2fd, #ffffff);
+  font-family: 'Roboto', sans-serif;
 }
 
+/* Card styling */
+.login-card {
+  max-width: 400px;
+  width: 100%;
+  padding: 32px 28px;
+  border-radius: 12px;
+  text-align: center;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+}
+
+/* Title */
+.login-card h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  color: #1e3a8a;
+}
+
+/* Input fields */
 .full {
   width: 100%;
+  margin-bottom: 18px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-label {
+  font-weight: 500;
+  color: #374151;
+}
+
+/* Login button */
+button.full {
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  background: linear-gradient(90deg, #2196f3, #0d47a1);
+  color: #fff !important;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+button.full:hover {
+  background: linear-gradient(90deg, #0d47a1, #2196f3);
+  transform: scale(1.02);
+}
+
+/* Back link */
+.back-link {
+  margin-top: 16px;
+}
+
+.back-link a {
+  text-decoration: none;
+  color: #1976d2;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.back-link a:hover {
+  color: #0d47a1;
 }

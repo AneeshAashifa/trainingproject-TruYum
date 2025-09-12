@@ -1,28 +1,39 @@
-<div class="auth-container">
-  <mat-card class="auth-card">
-    <h2>User Login</h2>
+<div class="login-container">
+  <mat-card class="login-card mat-elevation-z4">
+    <h2 class="login-title">
+      <mat-icon color="primary">login</mat-icon> User Login
+    </h2>
 
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-
+      <!-- Username -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Username</mat-label>
-        <input matInput formControlName="username" required>
-        <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
-          Username is required
-        </mat-error>
+        <input matInput formControlName="username" placeholder="Enter your username" required>
       </mat-form-field>
 
+      <!-- Password -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Password</mat-label>
-        <input matInput type="password" formControlName="password" required>
-        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
-          Password is required
-        </mat-error>
+        <input matInput type="password" formControlName="password" placeholder="Enter your password" required>
       </mat-form-field>
 
-      <button mat-raised-button color="accent" class="full-width" [disabled]="loginForm.invalid">
-        Login
-      </button>
+      <!-- Buttons -->
+      <div class="login-actions">
+        <button mat-flat-button color="primary" type="submit" [disabled]="loginForm.invalid">
+          <mat-icon>login</mat-icon> Login
+        </button>
+
+        <button mat-stroked-button color="accent" type="button" (click)="goToRegister()">
+          <mat-icon>person_add</mat-icon> Create Account
+        </button>
+      </div>
     </form>
+
+    <!-- Forgot Password -->
+    <div class="forgot-link">
+      <button mat-button color="warn">
+        <mat-icon>help</mat-icon> Forgot Password?
+      </button>
+    </div>
   </mat-card>
 </div>

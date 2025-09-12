@@ -12,6 +12,7 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminGuard } from './admin.guard';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+
 export const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginChoiceComponent },
@@ -25,5 +26,6 @@ export const routes: Routes = [
   { path: 'order-history', component: OrderHistoryComponent},
   { path: 'admin-dashboard', component: AdminDashboardComponent,canActivate: [AdminGuard]},
   { path: 'unauthorized', component: UnauthorizedComponent},
+  { path: 'signup', component: RegisterComponent },
   { path: '**', redirectTo: '' }
 ];

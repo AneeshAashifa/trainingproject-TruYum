@@ -32,7 +32,7 @@ export class AdminLoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // ✅ Initialize inside ngOnInit (fb is available here)
+    // ✅ Initialize inside ngOnInit
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]

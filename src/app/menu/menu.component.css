@@ -1,3 +1,19 @@
+.menu-background {
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+  font-family: 'Roboto', sans-serif;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* keep your existing styles unchanged below */
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -5,34 +21,21 @@
 }
 
 .menu-card {
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-mat-card-title {
-  font-weight: bold;
-  font-size: 18px;
-}
-
-mat-card-subtitle {
-  font-weight: 600;
-  color: #2e7d32;
-}
-
-mat-chip {
-  margin-right: 6px;
-}
-.menu-card {
   border-radius: 10px;
   overflow: hidden;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
+  background: #fff; /* keeps menu cards readable */
 }
 
 .item-grid .thumb { height: 90px; }
 
 .menu-card h3 { font-size: 18px; margin-bottom:4px; }
 
-.add-cart { background: linear-gradient(90deg,var(--primary), #115293); color:white; }
+.add-cart { 
+  background: linear-gradient(90deg, var(--primary), #115293); 
+  color:white; 
+}
+
 .add-cart mat-icon { margin-right:6px; }

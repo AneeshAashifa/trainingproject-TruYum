@@ -1,18 +1,29 @@
-<mat-card class="login-card">
-  <h2>🔑 Admin Login</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline" class="full">
-      <mat-label>Username</mat-label>
-      <input matInput formControlName="username" />
-    </mat-form-field>
+<div class="admin-login-container">
+  <mat-card class="login-card">
+    <h2>🔑 Admin Login</h2>
 
-    <mat-form-field appearance="outline" class="full">
-      <mat-label>Password</mat-label>
-      <input matInput type="password" formControlName="password" />
-    </mat-form-field>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Username -->
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" placeholder="Enter username" />
+      </mat-form-field>
 
-    <button mat-flat-button color="primary" class="full" type="submit" [disabled]="loginForm.invalid">
-      Login
-    </button>
-  </form>
-</mat-card>
+      <!-- Password -->
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" placeholder="Enter password" />
+      </mat-form-field>
+
+      <!-- Login button -->
+      <button mat-flat-button color="primary" class="full" type="submit" [disabled]="loginForm.invalid">
+        Login
+      </button>
+
+      <!-- Back link -->
+      <div class="back-link">
+        <a routerLink="/user-login">⬅ Back to User Login</a>
+      </div>
+    </form>
+  </mat-card>
+</div>

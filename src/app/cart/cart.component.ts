@@ -5,23 +5,28 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
 import { CartService } from '../services/cart.service';
 import { OrdersService } from '../services/orders.service';
 import { SignalrService } from '../services/signalr.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatTableModule, MatButtonModule, MatIconModule
-],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule
+  ],
   templateUrl: './cart.component.html',
-   styleUrls: ['./cart.component.css']
-
+  styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
-   cart: any = { items: [] };
-  displayedColumns: string[] = ['name', 'price', 'quantity', 'remove'];
+export class CartComponent implements OnInit, OnDestroy {
+  cart: any = { items: [] };
+  displayedColumns: string[] = ['item', 'price', 'quantity', 'remove'];
   private subs: Subscription[] = [];
 
   constructor(
@@ -33,9 +38,13 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.loadCart();
+
+    // ✅ Live cart updates if logged in
     if (localStorage.getItem('token')) {
       this.signalr.startConnection(() => {
-        this.signalr.on('CartUpdated', (payload) => { this.cart = payload; });
+        this.signalr.on('CartUpdated', (payload) => {
+          this.cart = payload;
+        });
         this.signalr.on('OrderPlaced', (payload) => {
           alert(`✅ Order placed! Total: ₹${payload.total ?? payload.Total}`);
         });
@@ -43,6 +52,7 @@ export class CartComponent implements OnInit {
     }
   }
 
+  // ✅ Total calculation
   get totalAmount(): number {
     if (!this.cart?.items) return 0;
     return this.cart.items.reduce((sum: number, item: any) => {
@@ -52,45 +62,55 @@ export class CartComponent implements OnInit {
     }, 0);
   }
 
+  // ✅ Fetch cart from backend
   loadCart() {
     this.cartService.getCart().subscribe({
-      next: res => this.cart = res,
-      error: err => console.error('Error fetching cart', err)
+      next: (res) => (this.cart = res),
+      error: (err) => console.error('Error fetching cart', err)
     });
   }
 
+  // ✅ Increase quantity
   increase(item: any) {
-    this.cartService.increaseQuantity(item.menuItemId || item.MenuItemId).subscribe({
+    const id = item.menuItemId || item.MenuItemId;
+    this.cartService.increaseQuantity(id).subscribe({
       next: () => this.loadCart(),
-      error: err => alert('Failed to increase: ' + err.message)
+      error: (err) => alert('Failed to increase: ' + err.message)
     });
   }
 
+  // ✅ Decrease quantity
   decrease(item: any) {
-    this.cartService.decreaseQuantity(item.menuItemId || item.MenuItemId).subscribe({
+    const id = item.menuItemId || item.MenuItemId;
+    this.cartService.decreaseQuantity(id).subscribe({
       next: () => this.loadCart(),
-      error: err => alert('Failed to decrease: ' + err.message)
+      error: (err) => alert('Failed to decrease: ' + err.message)
     });
   }
 
-  removeItem(menuItemId: number) {
-    this.cartService.removeFromCart(menuItemId).subscribe({
+  // ✅ Remove item
+  removeItem(item: any) {
+    const id = item.menuItemId || item.MenuItemId;
+    this.cartService.removeFromCart(id).subscribe({
       next: () => this.loadCart(),
-      error: err => alert('Failed to remove: ' + err.message)
+      error: (err) => alert('Failed to remove: ' + err.message)
     });
   }
 
+  // ✅ Checkout
   checkout() {
     this.ordersService.placeOrder().subscribe({
       next: (res: any) => {
         this.router.navigate(['/order-confirmation'], { state: { order: res } });
       },
-      error: err => alert('Checkout failed: ' + err.message)
+      error: (err) => alert('Checkout failed: ' + err.message)
     });
   }
 
   ngOnDestroy() {
+    // ✅ Clean SignalR listeners
     this.signalr.off('CartUpdated');
     this.signalr.off('OrderPlaced');
-  }
+    this.subs.forEach((s) => s.unsubscribe());
+  }
 }
