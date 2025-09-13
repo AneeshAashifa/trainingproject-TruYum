@@ -10,7 +10,7 @@ export class SignalrService {
     const token = localStorage.getItem('token') || '';
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(`${environment.apiBase}/hubs/notifications`, {
-        accessTokenFactory: () => token
+        accessTokenFactory: () => localStorage.getItem('token') || ""
       })
       .withAutomaticReconnect()
       .build();

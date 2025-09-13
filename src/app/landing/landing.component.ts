@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environments';
 @Component({
   selector: 'app-landing',
   standalone: true,
@@ -10,15 +11,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent implements OnInit {
-  constructor(private router: Router) {}
+   categories: any[] = [];
 
-  ngOnInit() {}
+  constructor(private router: Router, private http: HttpClient) {}
 
-  goToMenu(category?: string) {
-    if (category) {
-      this.router.navigate(['/menu'], { queryParams: { category } });
-    }
-    else{ this.router.navigate(['/menu']);
+  ngOnInit() {
+    this.loadCategories();
   }
-}
+
+  loadCategories() {
+    this.http.get<any[]>(`${environment.apiUrl}/categories`).subscribe({
+      next: (res) => (this.categories = res),
+      error: (err) => console.error('❌ Failed to load categories', err)
+    });
+  }
+
+  goToMenu(categoryId?: string) {
+    if (categoryId) {
+      this.router.navigate(['/menu'], { queryParams: { categoryId } });
+    } else {
+      this.router.navigate(['/menu']);
+    }
+  }
 }

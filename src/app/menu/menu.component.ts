@@ -44,8 +44,8 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      const category = params['category'];
-      this.fetchMenu(category);
+      const categoryId = params['categoryId'];
+      this.fetchMenu(categoryId);
     });
 
     if (localStorage.getItem('token')) {
@@ -57,9 +57,9 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  fetchMenu(category?: string) {
+  fetchMenu(categoryId?: Number) {
     let url = this.menuApi;
-    if (category) url = `${this.menuApi}?category=${category}`;
+    if (categoryId) url = `${this.menuApi}?categoryId=${categoryId}`;
     this.http.get<any[]>(url).subscribe({
       next: res => (this.menuItems = res),
       error: err => console.error('Error fetching menu:', err)
@@ -79,7 +79,7 @@ export class MenuComponent implements OnInit {
     const matchesSearch =
       !this.searchTerm ||
       item.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      item.category.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      item.categoryName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
       (item.description && item.description.toLowerCase().includes(this.searchTerm.toLowerCase()));
 
     const matchesFavourite = !this.showFavouritesOnly || this.favourites.has(item.id);

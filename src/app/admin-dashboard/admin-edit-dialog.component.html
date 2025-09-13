@@ -22,11 +22,10 @@
 
     <mat-form-field appearance="outline" class="half">
       <mat-label>Category</mat-label>
-      <mat-select formControlName="category">
-        <mat-option value="Beverage">Beverage</mat-option>
-        <mat-option value="Starter">Starter</mat-option>
-        <mat-option value="MainCourse">MainCourse</mat-option>
-        <mat-option value="Snack">Snack</mat-option>
+      <mat-select formControlName="categoryId">
+        <mat-option *ngFor="let c of categories" [value]="c.id">
+          {{ c.name }}
+        </mat-option>
       </mat-select>
     </mat-form-field>
 

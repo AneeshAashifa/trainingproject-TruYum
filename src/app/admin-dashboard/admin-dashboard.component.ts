@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { AdminService } from '../services/admin.service';
 import { AdminEditDialogComponent } from './admin-edit-dialog.component';
 import { ConfirmDialogComponent } from './confirm-dialog.component';
+import { AdminCategoriesComponent } from '../admin-categories/admin-categories.component';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -32,7 +33,8 @@ import { ConfirmDialogComponent } from './confirm-dialog.component';
     MatTabsModule,
     MatInputModule,
     AdminEditDialogComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    AdminCategoriesComponent
   ],
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.css']

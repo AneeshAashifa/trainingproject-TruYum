@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
@@ -8,7 +8,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AdminService } from '../services/admin.service';
-import { MatOptionModule } from '@angular/material/core'; 
+import { MatOptionModule } from '@angular/material/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environments';
+
 @Component({
   selector: 'app-admin-edit-dialog',
   standalone: true,
@@ -26,13 +29,15 @@ import { MatOptionModule } from '@angular/material/core';
   templateUrl: './admin-edit-dialog.component.html',
   styleUrls: ['./admin-edit-dialog.component.css']
 })
-export class AdminEditDialogComponent {
+export class AdminEditDialogComponent implements OnInit {
   form: FormGroup;
+  categories: any[] = [];
 
   constructor(
     private fb: FormBuilder,
     private adminService: AdminService,
     private snack: MatSnackBar,
+    private http: HttpClient,
     private dialogRef: MatDialogRef<AdminEditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -40,10 +45,21 @@ export class AdminEditDialogComponent {
       name: [data?.item?.name || '', Validators.required],
       description: [data?.item?.description || ''],
       price: [data?.item?.price || 0, Validators.required],
-      category: [data?.item?.category || '', Validators.required],
+      categoryId: [data?.item?.categoryId || null, Validators.required],
       veg: [data?.item?.veg ?? true],
       imageUrl: [data?.item?.imageUrl || ''],
       active: [data?.item?.active ?? true]
+    });
+  }
+
+  ngOnInit(): void {
+    // ✅ Fetch categories from API
+    this.http.get<any[]>(`${environment.apiUrl}/categories`).subscribe({
+      next: res => (this.categories = res),
+      error: err => {
+        console.error('Failed to load categories:', err);
+        this.snack.open('❌ Failed to load categories', 'Close', { duration: 3000 });
+      }
     });
   }
 
