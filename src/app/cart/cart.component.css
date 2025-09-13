@@ -1,7 +1,7 @@
 /* Vibrant animated background */
 .cart-background {
   min-height: 100vh;
-  background: linear-gradient(135deg, #ffecd2, #fcb69f, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb);
   background-size: 400% 400%;
   animation: gradientMove 15s ease infinite;
   padding: 30px;
