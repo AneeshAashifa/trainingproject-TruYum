@@ -1,12 +1,27 @@
 <div class="menu-background">
   <div class="app-container">
     <h2 style="text-align:center;margin-bottom:22px;color:#2e2e3a">🍽 Our Menu</h2>
-
+    
+    <!-- Search & Filters -->
+  <div class="search-filter-bar">
+    <div class="search-box">
+      <mat-icon class="search-icon">search</mat-icon>
+      <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Search by name, category, description"
+      />
+    </div>
+    <button mat-flat-button color="primary" (click)="showFavouritesOnly = !showFavouritesOnly">
+      <mat-icon>{{ showFavouritesOnly ? 'favorite' : 'favorite_border' }}</mat-icon>
+      {{ showFavouritesOnly ? 'Show All' : 'Favourites' }}
+    </button>
+  </div>
     <div class="menu-grid">
-      <mat-card class="menu-card mat-elevation-z2" *ngFor="let item of menuItems">
+      <mat-card class="menu-card mat-elevation-z2" *ngFor="let item of filteredMenu">
         <div style="padding:0">
           <div class="item-grid" style="padding:20px;">
-            <img class="thumb" [src]="item.imageUrl || 'assets/images/cold-coffee.jpg'" alt="{{item.name}}">
+            <img class="thumb" [src]="item.imageUrl || 'assets/images/default-food.jpg'" alt="{{item.name}}">
           </div>
         </div>
 
@@ -26,7 +41,9 @@
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px">
             <div>
               <button mat-icon-button (click)="toggleFavourite(item)">
-                <mat-icon>favorite_border</mat-icon>
+                <mat-icon [color]="favourites.has(item.id) ? 'warn' : ''">
+                  {{ favourites.has(item.id) ? 'favorite' : 'favorite_border' }}
+                </mat-icon>
               </button>
             </div>
 

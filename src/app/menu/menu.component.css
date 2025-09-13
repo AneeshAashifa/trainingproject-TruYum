@@ -39,3 +39,40 @@
 }
 
 .add-cart mat-icon { margin-right:6px; }
+.search-filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 6px 12px;
+  width: 300px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-box:focus-within {
+  border: 1px solid #3f51b5; /* Angular Material primary color */
+  box-shadow: 0 3px 6px rgba(63, 81, 181, 0.2);
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 15px;
+  padding: 6px;
+}
+
+.search-icon {
+  color: #777;
+  margin-right: 8px;
+}

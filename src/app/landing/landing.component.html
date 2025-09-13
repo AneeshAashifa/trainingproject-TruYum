@@ -3,25 +3,25 @@
   <p style="color:var(--muted);margin-bottom:20px">Delicious meals delivered fresh</p>
 
   <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:20px">
-    <a mat-card class="mat-elevation-z2" style="width:240px;text-align:center;padding:10px;text-decoration:none;color:inherit" routerLink="/menu?category=Beverage">
+    <a mat-card class="mat-elevation-z2" style="width:240px;text-align:center;padding:10px;text-decoration:none;color:inherit" (click)="goToMenu('beverage')">
       <img src="assets/images/beverage.jpg" style="width:100%;height:140px;object-fit:cover;border-radius:8px">
       <h3 style="margin:12px 0 6px">Beverage</h3>
       <p style="color:#4a4a5a;margin:0">Explore our Beverage selection</p>
     </a>
 
-    <a mat-card class="mat-elevation-z2" style="width:240px;text-align:center;padding:10px;text-decoration:none;color:inherit" routerLink="/menu?category=Starter">
+    <a mat-card class="mat-elevation-z2" style="width:240px;text-align:center;padding:10px;text-decoration:none;color:inherit" (click)="goToMenu('starter')">
       <img src="assets/images/starter.jpg" style="width:100%;height:140px;object-fit:cover;border-radius:8px">
       <h3 style="margin:12px 0 6px">Starter</h3>
       <p style="color:#4a4a5a;margin:0">Explore our Starter selection</p>
     </a>
 
-    <a mat-card class="mat-elevation-z2" style="width:240px;text-align:center;padding:10px;text-decoration:none;color:inherit" routerLink="/menu?category=MainCourse">
+    <a mat-card class="mat-elevation-z2" style="width:240px;text-align:center;padding:10px;text-decoration:none;color:inherit" (click)="goToMenu('mainCourse')">
       <img src="assets/images/maincourse.jpg" style="width:100%;height:140px;object-fit:cover;border-radius:8px">
       <h3 style="margin:12px 0 6px">MainCourse</h3>
       <p style="color:#4a4a5a;margin:0">Explore our MainCourse selection</p>
     </a>
 
-    <a mat-card class="mat-elevation-z2" style="width:240px;text-align:center;padding:10px;text-decoration:none;color:inherit" routerLink="/menu?category=Snack">
+    <a mat-card class="mat-elevation-z2" style="width:240px;text-align:center;padding:10px;text-decoration:none;color:inherit" (click)="goToMenu('snack')">
       <img src="assets/images/snack.jpg" style="width:100%;height:140px;object-fit:cover;border-radius:8px">
       <h3 style="margin:12px 0 6px">Snack</h3>
       <p style="color:#4a4a5a;margin:0">Explore our Snack selection</p>
