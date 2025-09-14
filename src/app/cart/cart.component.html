@@ -1,6 +1,13 @@
 <div class="cart-background">
   <div class="cart-container">
     <!-- LEFT: Items -->
+     <!-- Empty cart message -->
+    <div class="empty-cart" *ngIf="cart?.items?.length === 0">
+      <mat-card>
+        <h2>Your cart is empty 🛒</h2>
+        <p>Add some delicious items to get started!</p>
+      </mat-card>
+    </div>
     <div class="cart-items">
       <mat-card *ngFor="let item of cart?.items" class="cart-item">
         <div class="item-info">
@@ -24,9 +31,8 @@
         </div>
       </mat-card>
     </div>
-
     <!-- RIGHT: Price Details + Checkout -->
-    <div class="price-summary">
+    <div class="price-summary" *ngIf="cart?.items?.length > 0">
       <mat-card>
         <h2>Price Details</h2>
         <p>Subtotal <span>₹ {{ totalAmount }}</span></p>

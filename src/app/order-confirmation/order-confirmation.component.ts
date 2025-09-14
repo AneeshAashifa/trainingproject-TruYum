@@ -25,4 +25,10 @@ export class OrderConfirmationComponent {
   goToOrderHistory() {
     this.router.navigate(['/order-history']);
   }
+  get finalTotal(): number {
+  const subtotal = this.order?.total || this.order?.Total || 0;
+  const tax = subtotal * 0.05;
+  const delivery = subtotal > 0 ? 50 : 0;
+  return subtotal + tax + delivery;
+}
 }

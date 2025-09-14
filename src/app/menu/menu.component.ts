@@ -57,7 +57,7 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  fetchMenu(categoryId?: Number) {
+  fetchMenu(categoryId?: string) {
     let url = this.menuApi;
     if (categoryId) url = `${this.menuApi}?categoryId=${categoryId}`;
     this.http.get<any[]>(url).subscribe({

@@ -32,7 +32,7 @@ import { CategoryEditDialogComponent } from './category-edit-dialog.component';
 })
 export class AdminCategoriesComponent implements OnInit {
   categories: any[] = [];
-  displayedColumns: string[] = ['id', 'name', 'active', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'actions'];
   isLoading = false;
   search = '';
 

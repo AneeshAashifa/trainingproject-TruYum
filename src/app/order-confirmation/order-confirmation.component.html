@@ -1,8 +1,8 @@
 <mat-card class="order-card" *ngIf="order">
   <h2>✅ Order Confirmed!</h2>
   <p><strong>Order ID:</strong> {{ order.id }}</p>
-  <p><strong>Total Amount:</strong> ₹ {{ order.total || order.Total }}</p>
-  <p><strong>Date:</strong> {{ order.placedAt || (order.date | date:'short') }}</p>
+  <p><strong>Total Amount:</strong> ₹ {{ finalTotal }}</p>
+  <p><strong>Date:</strong> {{ (order.placedAt || order.date) | date:'dd/MM/yyyy, h:mm a' }}</p>
 
   <h3>Items:</h3>
   <ul>
@@ -10,6 +10,7 @@
       {{ item.menuItemName || item.MenuItemName }} × {{ item.quantity || item.Quantity }}
     </li>
   </ul>
+  
   <div class="actions">
     <button mat-raised-button color="primary" (click)="goHome()">🏠 Go to Home</button>
     <button mat-raised-button color="accent" (click)="goToOrderHistory()">📜 View Order History</button>

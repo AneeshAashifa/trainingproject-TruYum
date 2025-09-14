@@ -14,6 +14,12 @@
     <!-- Menu Items Tab -->
     <mat-tab label="Menu">
       <div class="table-wrap" *ngIf="!isLoading; else loading">
+        <!-- 🔍 Search Bar -->
+        <mat-form-field appearance="outline" class="search-bar">
+          <mat-label>Search menu items</mat-label>
+          <input matInput (input)="applyFilter($event)" placeholder="Type name or category">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z2 full-table modern-table">
           <!-- ID -->
           <ng-container matColumnDef="id">
