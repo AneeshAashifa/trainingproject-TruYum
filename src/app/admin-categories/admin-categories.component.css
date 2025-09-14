@@ -1,0 +1,15 @@
+.admin-card { max-width: 980px; margin: 20px auto; }
+.admin-toolbar { padding: 8px 12px; display:flex; align-items:center; }
+.spacer { flex: 1 1 auto; }
+.admin-content { padding: 12px; }
+.search-row { margin-bottom: 12px; }
+.search-input {
+  width: 320px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.categories-table { width:100%; margin-top: 8px; }
+.loading { padding: 18px; text-align:center; color:#666; }
+.empty { padding: 18px; text-align:center; color:#666; }
