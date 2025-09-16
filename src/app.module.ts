@@ -14,7 +14,7 @@ import { VerifyComponent } from './app/verify/verify.component';
 import { MenuComponent } from './app/menu/menu.component';
 import { CartComponent } from './app/cart/cart.component';
 import { OrderPlacedComponent } from './app/order-placed/order-placed.component';
-import { AdminComponent } from './app/admin/admin.component';
+import { ChatComponent } from './app/chat/chat.component';
 
 // ✅ Inline JWT Interceptor
 export class JwtInterceptor implements HttpInterceptor {
@@ -38,7 +38,7 @@ const routes: Routes = [
   { path: 'menu', component: MenuComponent },
   { path: 'cart', component: CartComponent },
   { path: 'order-placed', component: OrderPlacedComponent },
-  { path: 'admin', component: AdminComponent },
+  { path: 'chat', component: ChatComponent }, 
   { path: '', redirectTo: '/menu', pathMatch: 'full' }
 ];
 
@@ -58,7 +58,7 @@ const routes: Routes = [
     MenuComponent,
     CartComponent,
     OrderPlacedComponent,
-    AdminComponent
+    ChatComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

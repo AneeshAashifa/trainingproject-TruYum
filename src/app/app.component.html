@@ -36,6 +36,9 @@
 
         <!-- Show when logged in -->
         <ng-container *ngIf="isLoggedIn">
+          <span style="font-weight:500;color:rgb(30,30,139)">
+            👋 Hi, {{ role === 'Admin' ? 'Admin' : username }}
+          </span>
           <button mat-button (click)="logout()" style="color:rgb(30, 30, 139)">
             <mat-icon>account_circle</mat-icon> Logout
           </button>
@@ -50,4 +53,6 @@
   </mat-toolbar>
 
   <router-outlet></router-outlet>
+  <app-chat></app-chat>
+
 </div>

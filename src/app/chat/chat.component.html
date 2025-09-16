@@ -1,0 +1,27 @@
+<div class="chatbot-container">
+  <!-- Floating Button -->
+  <button class="chat-toggle" (click)="toggleChat()">
+    💬
+  </button>
+
+  <!-- Chat Window -->
+  <div class="chat-window" *ngIf="isOpen">
+    <div class="chat-header">
+      <span>🤖 TruYum Assistant</span>
+      <button class="close-btn" (click)="toggleChat()">✖</button>
+    </div>
+
+    <div class="chat-body">
+      <div *ngFor="let msg of messages">
+        <div [ngClass]="{'user-msg': msg.sender === 'You', 'bot-msg': msg.sender === 'Bot'}">
+          <strong>{{ msg.sender }}:</strong> {{ msg.text }}
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-footer">
+      <input [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Type a message..." />
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>

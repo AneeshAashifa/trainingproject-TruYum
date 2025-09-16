@@ -55,7 +55,9 @@ export class UserLoginComponent {
     this.http.post<any>(this.apiUrl, this.loginForm.value).subscribe({
       next: (res) => {
         localStorage.setItem('token', res.token);
-        this.snackBar.open('✅ Login successful!', 'Close', { duration: 3000 });
+        localStorage.setItem('username',res.username);
+        localStorage.setItem('role',res.role);
+        this.snackBar.open(`✅Welcome,${res.username}!`, 'Close', { duration: 3000 });
         this.router.navigate(['/menu']);
       },
       error: (err) => {

@@ -5,22 +5,30 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ChatComponent } from './chat/chat.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,CommonModule, RouterLink, RouterLinkActive,MatButtonModule,MatIconModule,MatToolbarModule],
+  imports: [RouterOutlet,CommonModule, RouterLink, FormsModule, RouterLinkActive,MatButtonModule,MatIconModule,MatToolbarModule, ChatComponent],
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-   get isLoggedIn(): boolean {
+  constructor(private router: Router) {}
+  get isLoggedIn(): boolean {
     // 👈 reactive check every time Angular renders
     return !!localStorage.getItem('token');
   }
-
-  constructor(private router: Router) {}
-
+  get username(): string | null {
+    return localStorage.getItem('username');
+  }
+  get role(): string | null {
+  return localStorage.getItem('role');
+  } 
   logout() {
     localStorage.removeItem('token');
-    this.router.navigate(['/']); // go back to home
-  }
+    localStorage.removeItem('username');
+    localStorage.removeItem('role');
+    this.router.navigate(['/']); // go back to home
+  }
 }
