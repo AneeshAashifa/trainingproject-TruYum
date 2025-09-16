@@ -1,41 +1,15 @@
-/* Vibrant animated background */
-.cart-background {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb);
-  background-size: 400% 400%;
-  animation: gradientMove 15s ease infinite;
-  padding: 30px;
-}
-
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+/* Dark background matching landing/menu */
+.cart-background { min-height: 100vh; background: #0a0f1a; padding: 30px 0 40px 0; color: #e5e7eb; }
 
 /* Existing cart styles */
-.cart-container {
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
-  margin: 2rem;
-}
+.cart-container { display: flex; gap: 2rem; align-items: flex-start; margin: 2rem auto; width: min(1100px, 100%); padding: 0 20px; }
 
 /* LEFT ITEMS */
 .cart-items {
   flex: 2;
 }
 
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  background: #fff; /* Keep cards readable */
-}
+.cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding: 1rem; border-radius: 12px; background: #111827; border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
 
 .item-info {
   display: flex;
@@ -43,17 +17,9 @@
   gap: 1rem;
 }
 
-.item-info img {
-  width: 70px;
-  height: 70px;
-  border-radius: 8px;
-  object-fit: cover;
-}
+.item-info img { width: 70px; height: 70px; border-radius: 8px; object-fit: cover; background:#0f1629; }
 
-.desc {
-  font-size: 0.9rem;
-  color: #666;
-}
+.desc { font-size: 0.9rem; color: #a1a7b3; }
 
 .item-actions {
   display: flex;
@@ -61,10 +27,7 @@
   gap: 1rem;
 }
 
-.price {
-  font-weight: bold;
-  color: #333;
-}
+.price { font-weight: 700; color: #93c5fd; }
 
 .quantity {
   display: flex;
@@ -73,56 +36,20 @@
 }
 
 /* RIGHT SUMMARY */
-.price-summary {
-  flex: 1;
-  position: sticky;
-  top: 2rem;
-}
+.price-summary { flex: 1; position: sticky; top: 2rem; }
 
-.price-summary mat-card {
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  background: #fff;
-}
+.price-summary mat-card { padding: 1.5rem; border-radius: 12px; background: #111827; border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
 
-.price-summary p {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1rem;
-  margin: 0.5rem 0;
-}
+.price-summary p { display: flex; justify-content: space-between; font-size: 1rem; margin: 0.5rem 0; color:#c7ccd6; }
 
-.price-summary h2 {
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
-  color: #444;
-}
+.price-summary h2 { margin-bottom: 1rem; font-size: 1.3rem; color: #f3f4f6; }
 
-.price-summary h3 {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-top: 1rem;
-  color: #222;
-}
+.price-summary h3 { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 800; margin-top: 1rem; color: #f3f4f6; }
 
 /* CHECKOUT BUTTON */
-.checkout-btn {
-  width: 100%;
-  margin-top: 1rem;
-  padding: 1rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #fff !important;
-  background: linear-gradient(90deg, #2196f3, #0d47a1);
-  border-radius: 8px;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
+.checkout-btn { width: 100%; margin-top: 1rem; padding: 1rem; font-size: 1.05rem; font-weight: 700; color: #fff !important; background: linear-gradient(90deg, var(--primary), #115293); border-radius: 10px; transition: transform 0.2s, box-shadow 0.2s; }
 
-.checkout-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(90deg, #1e3c72, #2a5298);
-}
+.checkout-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.35); }
+
+/* Empty state */
+.empty-cart mat-card { background:#111827; color:#e5e7eb; border:1px solid rgba(255,255,255,0.06); text-align:center; padding:24px; }

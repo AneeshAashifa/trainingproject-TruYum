@@ -1,7 +1,95 @@
+/* Simple dark theme for admin edit dialog */
+:host {
+  display: block !important;
+  color: #f8fafc !important;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #111827 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Global text color override */
+:host * {
+  color: #ffffff !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Override Angular Material dialog styles */
+::ng-deep .mat-dialog-container {
+  background: #111827 !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  min-width: 500px !important;
+  max-width: 600px !important;
+}
+
+/* Ensure dialog backdrop is properly styled */
+::ng-deep .cdk-overlay-backdrop {
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Ensure dialog panel is visible */
+::ng-deep .cdk-overlay-pane {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Force all dialog content to be visible */
+::ng-deep .mat-dialog-container * {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+/* Ensure form elements are visible */
+::ng-deep .mat-form-field {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+::ng-deep .mat-button {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: inline-block !important;
+}
+
+/* Dialog title */
+::ng-deep .mat-dialog-title {
+  color: #f8fafc !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+  padding: 24px 24px 16px 24px !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+/* Dialog content */
+::ng-deep .mat-dialog-content {
+  padding: 24px !important;
+  background: #111827 !important;
+  margin: 0 !important;
+  max-height: 70vh !important;
+  overflow-y: auto !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Form styling */
 .dialog-form {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: transparent !important;
 }
 
 .full {
@@ -12,6 +100,172 @@
   flex: 1 1 calc(50% - 8px);
 }
 
-.actions {
-  margin-top: 16px;
+/* Form fields */
+::ng-deep .mat-form-field {
+  width: 100%;
+}
+
+::ng-deep .mat-form-field-label {
+  color: #cbd5e1 !important;
+}
+
+::ng-deep .mat-input-element {
+  color: #f8fafc !important;
+  font-size: 14px;
+}
+
+::ng-deep .mat-form-field-outline {
+  color: rgba(255,255,255,0.2) !important;
+}
+
+::ng-deep .mat-form-field-outline-thick {
+  color: #3b82f6 !important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: #3b82f6 !important;
+}
+
+/* Select dropdown */
+::ng-deep .mat-select {
+  color: #f8fafc !important;
+}
+
+::ng-deep .mat-select-value {
+  color: #f8fafc !important;
+}
+
+::ng-deep .mat-select-arrow {
+  color: #cbd5e1 !important;
+}
+
+::ng-deep .mat-select-panel {
+  background: #1f2937 !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 8px !important;
+}
+
+::ng-deep .mat-option {
+  color: #f8fafc !important;
+  background: #1f2937 !important;
+}
+
+::ng-deep .mat-option:hover {
+  background: rgba(59,130,246,0.1) !important;
+}
+
+::ng-deep .mat-option.mat-selected {
+  background: rgba(59,130,246,0.2) !important;
+  color: #3b82f6 !important;
+}
+
+/* Checkbox */
+::ng-deep .mat-checkbox .mat-checkbox-label {
+  color: #f8fafc !important;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+  border-color: rgba(255,255,255,0.3) !important;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-background {
+  background-color: #3b82f6 !important;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+  background-color: #3b82f6 !important;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-checkmark {
+  color: #ffffff !important;
+}
+
+/* Dialog actions */
+::ng-deep .mat-dialog-actions {
+  padding: 16px 24px 24px 24px !important;
+  background: #0f1629 !important;
+  margin: 0 !important;
+  border-top: 1px solid rgba(255,255,255,0.08) !important;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* Buttons */
+::ng-deep .mat-stroked-button {
+  color: #cbd5e1 !important;
+  border-color: rgba(255,255,255,0.2) !important;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+}
+
+::ng-deep .mat-stroked-button:hover {
+  background: rgba(255,255,255,0.05) !important;
+  border-color: rgba(255,255,255,0.3) !important;
+  color: #f8fafc !important;
+}
+
+::ng-deep .mat-flat-button {
+  background: #3b82f6 !important;
+  color: #ffffff !important;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+}
+
+::ng-deep .mat-flat-button:hover:not(:disabled) {
+  background: #2563eb !important;
+}
+
+::ng-deep .mat-flat-button:disabled {
+  background: rgba(107,114,128,0.3) !important;
+  color: rgba(255,255,255,0.5) !important;
+}
+
+/* Form validation */
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: #ef4444 !important;
+}
+
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-outline {
+  color: #ef4444 !important;
+}
+
+::ng-deep .mat-error {
+  color: #ef4444 !important;
+  font-size: 12px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .half {
+    flex: 1 1 100%;
+  }
+  
+  ::ng-deep .mat-dialog-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  ::ng-deep .mat-stroked-button,
+  ::ng-deep .mat-flat-button {
+    width: 100%;
+  }
+}
+
+/* Custom scrollbar */
+::ng-deep .mat-dialog-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+::ng-deep .mat-dialog-content::-webkit-scrollbar-track {
+  background: #0f1629;
+}
+
+::ng-deep .mat-dialog-content::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 3px;
+}
+
+::ng-deep .mat-dialog-content::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
 }

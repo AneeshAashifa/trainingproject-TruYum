@@ -10,6 +10,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
 
 import { AdminService } from '../services/admin.service';
@@ -32,6 +34,8 @@ import { AdminCategoriesComponent } from '../admin-categories/admin-categories.c
     MatFormFieldModule,
     MatTabsModule,
     MatInputModule,
+    MatProgressSpinnerModule,
+    MatTooltipModule,
     AdminEditDialogComponent,
     ConfirmDialogComponent,
     AdminCategoriesComponent

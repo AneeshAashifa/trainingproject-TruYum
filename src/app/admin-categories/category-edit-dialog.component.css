@@ -1,2 +1,237 @@
-mat-form-field.full { width: 100%; }
-.dialog-form { min-width: 320px; }
+/* Simple dark theme for category edit dialog */
+:host {
+  display: block !important;
+  color: #f8fafc !important;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #111827 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Global text color override */
+:host * {
+  color: #ffffff !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Override Angular Material dialog styles */
+::ng-deep .mat-dialog-container {
+  background: #111827 !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  min-width: 400px !important;
+  max-width: 500px !important;
+}
+
+/* Ensure dialog backdrop is properly styled */
+::ng-deep .cdk-overlay-backdrop {
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Ensure dialog panel is visible */
+::ng-deep .cdk-overlay-pane {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Force all dialog content to be visible */
+::ng-deep .mat-dialog-container * {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+/* Dialog title */
+::ng-deep .mat-dialog-title {
+  color: #f8fafc !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+  padding: 24px 24px 16px 24px !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+/* Dialog content */
+::ng-deep .mat-dialog-content {
+  padding: 24px !important;
+  background: #111827 !important;
+  margin: 0 !important;
+  max-height: 70vh !important;
+  overflow-y: auto !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Form styling */
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: transparent !important;
+}
+
+.full {
+  flex: 1 1 100%;
+}
+
+/* Form fields */
+::ng-deep .mat-form-field {
+  width: 100%;
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+::ng-deep .mat-form-field-label {
+  color: #cbd5e1 !important;
+}
+
+::ng-deep .mat-input-element {
+  color: #f8fafc !important;
+  font-size: 14px;
+}
+
+::ng-deep .mat-form-field-outline {
+  color: rgba(255,255,255,0.2) !important;
+}
+
+::ng-deep .mat-form-field-outline-thick {
+  color: #8b5cf6 !important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: #8b5cf6 !important;
+}
+
+/* Checkbox */
+::ng-deep .mat-checkbox .mat-checkbox-label {
+  color: #f8fafc !important;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+  border-color: rgba(255,255,255,0.3) !important;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-background {
+  background-color: #8b5cf6 !important;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+  background-color: #8b5cf6 !important;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-checkmark {
+  color: #ffffff !important;
+}
+
+/* Dialog actions */
+::ng-deep .mat-dialog-actions {
+  padding: 16px 24px 24px 24px !important;
+  background: #0f1629 !important;
+  margin: 0 !important;
+  border-top: 1px solid rgba(255,255,255,0.08) !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 12px !important;
+}
+
+/* Buttons */
+::ng-deep .mat-stroked-button {
+  color: #cbd5e1 !important;
+  border-color: rgba(255,255,255,0.2) !important;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+}
+
+::ng-deep .mat-stroked-button:hover {
+  background: rgba(255,255,255,0.05) !important;
+  border-color: rgba(255,255,255,0.3) !important;
+  color: #f8fafc !important;
+}
+
+::ng-deep .mat-flat-button {
+  background: #8b5cf6 !important;
+  color: #ffffff !important;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+}
+
+::ng-deep .mat-flat-button:hover:not(:disabled) {
+  background: #7c3aed !important;
+}
+
+::ng-deep .mat-flat-button:disabled {
+  background: rgba(107,114,128,0.3) !important;
+  color: rgba(255,255,255,0.5) !important;
+}
+
+/* Form validation */
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: #ef4444 !important;
+}
+
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-outline {
+  color: #ef4444 !important;
+}
+
+::ng-deep .mat-error {
+  color: #ef4444 !important;
+  font-size: 12px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .half {
+    flex: 1 1 100%;
+  }
+  
+  ::ng-deep .mat-dialog-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  ::ng-deep .mat-stroked-button,
+  ::ng-deep .mat-flat-button {
+    width: 100%;
+  }
+}
+
+/* Custom scrollbar */
+::ng-deep .mat-dialog-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+::ng-deep .mat-dialog-content::-webkit-scrollbar-track {
+  background: #0f1629;
+}
+
+::ng-deep .mat-dialog-content::-webkit-scrollbar-thumb {
+  background: #8b5cf6;
+  border-radius: 3px;
+}
+
+::ng-deep .mat-dialog-content::-webkit-scrollbar-thumb:hover {
+  background: #7c3aed;
+}
+
+/* Ensure all elements are visible */
+::ng-deep .mat-button {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: inline-block !important;
+}
+
+::ng-deep .mat-icon {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: inline-block !important;
+}

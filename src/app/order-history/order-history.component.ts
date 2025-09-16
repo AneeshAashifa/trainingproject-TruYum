@@ -32,9 +32,17 @@ export class OrderHistoryComponent implements OnInit {
   loadOrders() {
     this.ordersService.history().subscribe({
       next: (res: any) => {
-        this.orders = res;
+        const getId = (o: any) => Number(o?.id ?? o?.Id ?? 0);
+        this.orders = (res || []).slice().sort((a: any, b: any) => getId(a) - getId(b));
       },
       error: (err) => console.error('❌ Failed to fetch order history', err)
     });
+  }
+
+  getFinalTotal(order: any): number {
+    const subtotal = order?.total ?? order?.Total ?? 0;
+    const tax = subtotal * 0.05;
+    const delivery = subtotal > 0 ? 50 : 0;
+    return subtotal + tax + delivery;
   }
 }

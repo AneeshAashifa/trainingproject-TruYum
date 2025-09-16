@@ -1,14 +1,136 @@
 .app-background {
   min-height: 100vh;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
-  background-size: 400% 400%;
-  animation: gradientShift 12s ease infinite;
+  background: #0a0f1a; /* Dark charcoal background to match app theme */
   display: flex;
   flex-direction: column;
 }
 
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* Dark navbar styling to match app theme */
+::ng-deep .mat-toolbar,
+::ng-deep .mat-toolbar.mat-primary,
+::ng-deep .mat-toolbar[color="primary"],
+::ng-deep .mat-toolbar.mat-elevation-z4 {
+  background: linear-gradient(135deg, #1a2332 0%, #0f1629 100%) !important;
+  color: #f8fafc !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+/* Force dark background on all toolbar variations */
+::ng-deep .mat-toolbar.mat-primary,
+::ng-deep .mat-toolbar[color="primary"] {
+  background: linear-gradient(135deg, #1a2332 0%, #0f1629 100%) !important;
+  color: #f8fafc !important;
+}
+
+/* Override any Material theme colors */
+::ng-deep .mat-toolbar.mat-primary {
+  background: linear-gradient(135deg, #1a2332 0%, #0f1629 100%) !important;
+  color: #f8fafc !important;
+}
+
+/* Navbar links styling */
+::ng-deep .mat-toolbar a,
+::ng-deep .mat-toolbar button {
+  color: #f8fafc !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+}
+
+::ng-deep .mat-toolbar a:hover,
+::ng-deep .mat-toolbar button:hover {
+  color: #3b82f6 !important;
+  background: rgba(59,130,246,0.1) !important;
+  border-radius: 8px !important;
+}
+
+/* Brand text styling */
+::ng-deep .mat-toolbar .brand-text {
+  color: #f8fafc !important;
+  font-weight: 700 !important;
+  font-size: 30px !important;
+}
+
+/* User greeting text */
+::ng-deep .mat-toolbar .user-greeting {
+  color: #cbd5e1 !important;
+  font-weight: 500 !important;
+}
+
+/* Additional toolbar background overrides */
+::ng-deep .mat-toolbar.mat-primary,
+::ng-deep .mat-toolbar[color="primary"],
+::ng-deep .mat-toolbar.mat-elevation-z4,
+::ng-deep .mat-toolbar.mat-primary.mat-elevation-z4 {
+  background: linear-gradient(135deg, #1a2332 0%, #0f1629 100%) !important;
+  color: #f8fafc !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+/* Force override any inherited background */
+::ng-deep .mat-toolbar {
+  background: linear-gradient(135deg, #1a2332 0%, #0f1629 100%) !important;
+  color: #f8fafc !important;
+}
+
+/* Override Material Design theme colors */
+::ng-deep .mat-toolbar.mat-primary {
+  background: linear-gradient(135deg, #1a2332 0%, #0f1629 100%) !important;
+  color: #f8fafc !important;
+}
+
+/* Custom navbar class - most specific targeting */
+.custom-navbar {
+  background: linear-gradient(135deg, #1a2332 0%, #0f1629 100%) !important;
+  color: #f8fafc !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+::ng-deep .custom-navbar {
+  background: linear-gradient(135deg, #1a2332 0%, #0f1629 100%) !important;
+  color: #f8fafc !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+/* Ultra-specific targeting for custom navbar */
+::ng-deep .mat-toolbar.custom-navbar {
+  background: linear-gradient(135deg, #1a2332 0%, #0f1629 100%) !important;
+  color: #f8fafc !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+/* Force override with maximum specificity */
+::ng-deep .mat-toolbar.custom-navbar.mat-elevation-z4 {
+  background: linear-gradient(135deg, #1a2332 0%, #0f1629 100%) !important;
+  color: #f8fafc !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+/* Ultra-aggressive targeting */
+::ng-deep .app-background .mat-toolbar.custom-navbar.mat-elevation-z4 {
+  background: linear-gradient(135deg, #1a2332 0%, #0f1629 100%) !important;
+  color: #f8fafc !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+/* Target by parent container */
+::ng-deep .app-background mat-toolbar {
+  background: linear-gradient(135deg, #1a2332 0%, #0f1629 100%) !important;
+  color: #f8fafc !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+/* Force override any Material theme */
+::ng-deep .mat-toolbar[class*="custom-navbar"] {
+  background: linear-gradient(135deg, #1a2332 0%, #0f1629 100%) !important;
+  color: #f8fafc !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
 }

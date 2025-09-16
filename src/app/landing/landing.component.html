@@ -1,28 +1,30 @@
-<div
-  class="app-container"
-  style="text-align:center;padding-top:40px;padding-bottom:32px;color:#2e2e3a"
->
-  <h1 style="font-size:34px;margin-bottom:8px">Welcome to TruYum 🍽</h1>
-  <p style="color:var(--muted);margin-bottom:20px">
-    Delicious meals delivered fresh
-  </p>
+<div class="landing">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content app-container">
+      <div class="brand">TruYum</div>
+      <h1>Discover the best food & drinks near you</h1>
+      <p>Order from your favorite restaurants or explore something new.</p>
 
-  <div
-    style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:20px"
-  >
-    <a
-      *ngFor="let cat of categories"
-      mat-card
-      class="mat-elevation-z2"
-      style="width:240px;text-align:center;padding:10px;text-decoration:none;color:inherit;cursor:pointer"
-      (click)="goToMenu(cat.id)"
-    >
-      <img
-        [src]="cat.imageUrl || 'assets/images/default-food.jpg'"
-        style="width:100%;height:140px;object-fit:cover;border-radius:8px"
-      />
-      <h3 style="margin:12px 0 6px">{{ cat.name }}</h3>
-      <p style="color:#4a4a5a;margin:0">Explore our {{ cat.name }} selection</p>
-    </a>
-  </div>
+      <div class="hero-actions">
+        <button class="btn btn-primary" (click)="goToMenu()">Explore Menu</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="categories app-container">
+    <h2 class="section-title">Browse by Category</h2>
+    <div class="category-grid">
+      <div class="category-card" *ngFor="let cat of categories" (click)="goToMenu(cat.id)">
+        <div class="image-wrap">
+          <img [src]="imageForCategory(cat)" alt="{{ cat.name }}" />
+        </div>
+        <div class="card-body">
+          <h3>{{ cat.name }}</h3>
+          <p>Explore our {{ cat.name }} selection</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

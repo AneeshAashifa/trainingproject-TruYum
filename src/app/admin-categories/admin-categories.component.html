@@ -1,44 +1,99 @@
 <mat-card class="admin-card">
-  <mat-toolbar color="primary" class="admin-toolbar">
-    <span class="spacer"></span>
-    <button mat-flat-button color="accent" (click)="openAdd()">
-      <mat-icon>add</mat-icon> Add Category
-    </button>
-  </mat-toolbar>
+  <!-- Enhanced Header -->
+  <div class="categories-header">
+    <div class="header-content">
+      <div class="header-left">
+        <div class="categories-icon">📂</div>
+        <div class="header-text">
+          <h2 class="categories-title">Categories Management</h2>
+          <p class="categories-subtitle">Manage your food categories</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="stats-card">
+          <div class="stat-item">
+            <span class="stat-number">{{ categories.length }}</span>
+            <span class="stat-label">Total Categories</span>
+          </div>
+        </div>
+        <button mat-raised-button class="add-category-btn" (click)="openAdd()">
+          <mat-icon>add</mat-icon>
+          Add Category
+        </button>
+      </div>
+    </div>
+  </div>
 
-  <div class="admin-content">
-    <div class="search-row">
-      <input type="text" placeholder="Search categories" [(ngModel)]="search" class="search-input" />
+  <div class="categories-content">
+    <!-- Enhanced Search Section -->
+    <div class="search-section">
+      <mat-form-field appearance="outline" class="search-bar">
+        <mat-label>Search categories</mat-label>
+        <input matInput [(ngModel)]="search" placeholder="Type category name">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
     </div>
 
-    <div *ngIf="isLoading" class="loading">Loading…</div>
+    <!-- Enhanced Table Container -->
+    <div class="table-container" *ngIf="!isLoading && categories.length > 0">
+      <table mat-table [dataSource]="filtered()" class="categories-table">
+        <!-- ID -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let c">{{ c.id }}</td>
+        </ng-container>
 
-    <table mat-table [dataSource]="filtered()" class="categories-table mat-elevation-z1" *ngIf="!isLoading && categories.length > 0">
-      <!-- ID -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let c">{{ c.id }}</td>
-      </ng-container>
+        <!-- Name -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let c">{{ c.name }}</td>
+        </ng-container>
 
-      <!-- Name -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let c">{{ c.name }}</td>
-      </ng-container>
+        <!-- Actions -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let c">
+            <button mat-icon-button 
+                    matTooltip="Edit Category" 
+                    matTooltipPosition="above"
+                    matTooltipClass="white-tooltip"
+                    (click)="openEdit(c)"
+                    class="edit-btn">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button 
+                    matTooltip="Delete Category" 
+                    matTooltipPosition="above"
+                    matTooltipClass="white-tooltip"
+                    (click)="delete(c)"
+                    class="delete-btn">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
 
-      <!-- Actions -->
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>Actions</th>
-        <td mat-cell *matCellDef="let c">
-          <button mat-icon-button color="primary" (click)="openEdit(c)" matTooltip="Edit"><mat-icon>edit</mat-icon></button>
-          <button mat-icon-button color="warn" (click)="delete(c)" matTooltip="Delete"><mat-icon>delete</mat-icon></button>
-        </td>
-      </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
+    <!-- Enhanced Loading State -->
+    <div class="loading-container" *ngIf="isLoading">
+      <div class="loading-spinner">
+        <mat-spinner diameter="40"></mat-spinner>
+      </div>
+      <p class="loading-text">Loading categories...</p>
+    </div>
 
-    <div class="empty" *ngIf="!isLoading && (!categories || categories.length === 0)">No categories found.</div>
+    <!-- Enhanced Empty State -->
+    <div class="empty-container" *ngIf="!isLoading && (!categories || categories.length === 0)">
+      <div class="empty-icon">📂</div>
+      <h3 class="empty-title">No Categories Found</h3>
+      <p class="empty-subtitle">Start by adding your first category</p>
+      <button mat-raised-button class="add-first-btn" (click)="openAdd()">
+        <mat-icon>add</mat-icon>
+        Add First Category
+      </button>
+    </div>
   </div>
 </mat-card>

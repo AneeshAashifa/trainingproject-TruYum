@@ -9,8 +9,13 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CategoryService } from '../services/category.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
  // optional typed interface if you have
 import { CategoryEditDialogComponent } from './category-edit-dialog.component';
+import { ConfirmDialogComponent } from '../admin-dashboard/confirm-dialog.component';
 
 @Component({
   selector: 'app-admin-categories',
@@ -25,7 +30,12 @@ import { CategoryEditDialogComponent } from './category-edit-dialog.component';
     MatDialogModule,
     MatCardModule,
     MatToolbarModule,
-    CategoryEditDialogComponent
+    MatFormFieldModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatTooltipModule,
+    CategoryEditDialogComponent,
+    ConfirmDialogComponent
   ],
   templateUrl: './admin-categories.component.html',
   styleUrls: ['./admin-categories.component.css']
@@ -71,10 +81,27 @@ export class AdminCategoriesComponent implements OnInit {
   }
 
   delete(cat: any): void {
-    if (!confirm(`Delete category "${cat.name}"? This cannot be undone.`)) return;
-    this.svc.delete(cat.id).subscribe({
-      next: () => { this.snack.open('Category deleted', 'Close', { duration: 2000 }); this.load(); },
-      error: err => { this.snack.open('Failed to delete: ' + (err?.error || err?.message || ''), 'Close', { duration: 3000 }); console.error(err); }
+    const ref = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Delete Category',
+        message: `Are you sure you want to delete "${cat.name}"? This action cannot be undone.`
+      },
+      width: '400px'
+    });
+
+    ref.afterClosed().subscribe(confirmed => {
+      if (confirmed) {
+        this.svc.delete(cat.id).subscribe({
+          next: () => { 
+            this.snack.open('Category deleted successfully', 'Close', { duration: 2000 }); 
+            this.load(); 
+          },
+          error: err => { 
+            this.snack.open('Failed to delete: ' + (err?.error || err?.message || ''), 'Close', { duration: 3000 }); 
+            console.error(err); 
+          }
+        });
+      }
     });
   }
 }

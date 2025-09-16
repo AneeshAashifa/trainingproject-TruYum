@@ -7,10 +7,11 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ChatComponent } from './chat/chat.component';
+import { ToastContainerComponent } from './shared/toast-container/toast-container.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,CommonModule, RouterLink, FormsModule, RouterLinkActive,MatButtonModule,MatIconModule,MatToolbarModule, ChatComponent],
+  imports: [RouterOutlet,CommonModule, RouterLink, FormsModule, RouterLinkActive,MatButtonModule,MatIconModule,MatToolbarModule, ChatComponent, ToastContainerComponent],
   templateUrl: './app.component.html'
 })
 export class AppComponent {

@@ -1,10 +1,29 @@
-<h2 mat-dialog-title>{{ data.title || 'Confirm' }}</h2>
-
-<div mat-dialog-content>
-  {{ data.message || 'Are you sure?' }}
+<!-- Enhanced Dialog Header -->
+<div class="dialog-header">
+  <div class="header-icon">
+    <mat-icon>warning</mat-icon>
+  </div>
+  <div class="header-text">
+    <h2 mat-dialog-title class="dialog-title">{{ data.title || 'Confirm Action' }}</h2>
+  </div>
 </div>
 
-<div mat-dialog-actions align="end">
-  <button mat-stroked-button (click)="close(false)">Cancel</button>
-  <button mat-flat-button color="warn" (click)="close(true)">OK</button>
+<!-- Enhanced Dialog Content -->
+<div mat-dialog-content class="dialog-content">
+  <div class="message-container">
+    <p class="confirm-message">{{ data.message || 'Are you sure you want to proceed?' }}</p>
+    <p class="warning-text">This action cannot be undone.</p>
+  </div>
+</div>
+
+<!-- Enhanced Dialog Actions -->
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-stroked-button class="cancel-btn" (click)="close(false)">
+    <mat-icon>close</mat-icon>
+    Cancel
+  </button>
+  <button mat-raised-button class="confirm-btn" (click)="close(true)">
+    <mat-icon>check</mat-icon>
+    Confirm
+  </button>
 </div>

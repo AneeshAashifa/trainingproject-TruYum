@@ -137,3 +137,81 @@ h2 {
   width: 100%;
   margin-bottom: 15px;
 }
+
+/* Global tooltip styling - Force all tooltips to be white */
+::ng-deep .mat-tooltip,
+::ng-deep .mat-tooltip-panel,
+::ng-deep .mat-tooltip-panel *,
+::ng-deep .cdk-overlay-container .mat-tooltip,
+::ng-deep .cdk-overlay-container .mat-tooltip *,
+::ng-deep .cdk-overlay-backdrop + .cdk-overlay-pane .mat-tooltip,
+::ng-deep .cdk-overlay-backdrop + .cdk-overlay-pane .mat-tooltip *,
+::ng-deep [matTooltip] + .mat-tooltip {
+  color: #f8fafc !important;
+  background: #1f2937 !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+/* Custom tooltip class for white text - Global */
+::ng-deep .white-tooltip {
+  color: #f8fafc !important;
+  background: #1f2937 !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+::ng-deep .white-tooltip * {
+  color: #f8fafc !important;
+}
+
+::ng-deep .white-tooltip::before,
+::ng-deep .white-tooltip::after {
+  color: #f8fafc !important;
+}
+
+/* Global navbar dark theme override */
+::ng-deep .mat-toolbar,
+::ng-deep .mat-toolbar.mat-primary,
+::ng-deep .mat-toolbar[color="primary"],
+::ng-deep .mat-toolbar.mat-elevation-z4,
+::ng-deep .mat-toolbar.mat-primary.mat-elevation-z4 {
+  background: linear-gradient(135deg, #1a2332 0%, #0f1629 100%) !important;
+  color: #f8fafc !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+/* Force override any Material theme colors */
+::ng-deep .mat-toolbar.mat-primary {
+  background: linear-gradient(135deg, #1a2332 0%, #0f1629 100%) !important;
+  color: #f8fafc !important;
+}
+
+/* Custom navbar class - global targeting */
+::ng-deep .custom-navbar {
+  background: linear-gradient(135deg, #1a2332 0%, #0f1629 100%) !important;
+  color: #f8fafc !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+::ng-deep .mat-toolbar.custom-navbar {
+  background: linear-gradient(135deg, #1a2332 0%, #0f1629 100%) !important;
+  color: #f8fafc !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+::ng-deep .mat-toolbar.custom-navbar.mat-elevation-z4 {
+  background: linear-gradient(135deg, #1a2332 0%, #0f1629 100%) !important;
+  color: #f8fafc !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}

@@ -1,15 +1,538 @@
-.admin-card { max-width: 980px; margin: 20px auto; }
-.admin-toolbar { padding: 8px 12px; display:flex; align-items:center; }
-.spacer { flex: 1 1 auto; }
-.admin-content { padding: 12px; }
-.search-row { margin-bottom: 12px; }
-.search-input {
-  width: 320px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+/* Dark background to match app */
+:host { 
+  display: block; 
+  color: #f8fafc; 
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.categories-table { width:100%; margin-top: 8px; }
-.loading { padding: 18px; text-align:center; color:#666; }
-.empty { padding: 18px; text-align:center; color:#666; }
+
+/* Global text color override for admin categories */
+:host * {
+  color: #ffffff !important;
+}
+
+/* Override any inherited text colors */
+:host .mat-cell,
+:host .mat-cell *,
+:host .mat-table td,
+:host .mat-table td *,
+:host .mat-table tbody tr td,
+:host .mat-table tbody tr td * {
+  color: #ffffff !important;
+}
+
+/* Enhanced Card styling */
+.admin-card { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  border-radius: 20px; 
+  background: #111827; 
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4); 
+  border: 1px solid rgba(255,255,255,0.08); 
+  overflow: hidden; 
+}
+
+/* Enhanced Categories Header */
+.categories-header {
+  background: linear-gradient(135deg, #0f1629 0%, #1a2332 100%);
+  padding: 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.categories-icon {
+  font-size: 40px;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 8px 16px rgba(139,92,246,0.3);
+}
+
+.header-text h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: #f8fafc;
+  letter-spacing: -0.5px;
+}
+
+.categories-subtitle {
+  margin: 4px 0 0 0;
+  color: #cbd5e1;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.stats-card {
+  background: rgba(139,92,246,0.1);
+  border: 1px solid rgba(139,92,246,0.2);
+  border-radius: 12px;
+  padding: 16px 20px;
+  backdrop-filter: blur(10px);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-number {
+  font-size: 24px;
+  font-weight: 800;
+  color: #8b5cf6;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #cbd5e1;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.add-category-btn {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+  padding: 12px 24px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(16,185,129,0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.add-category-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(16,185,129,0.4) !important;
+}
+
+/* Categories Content */
+.categories-content {
+  padding: 32px;
+  background: #111827;
+}
+
+/* Enhanced Search Section */
+.search-section {
+  margin-bottom: 32px;
+}
+
+.search-bar { 
+  width: 100%;
+  max-width: 400px;
+}
+
+.search-bar .mat-form-field-wrapper { 
+  padding-bottom: 0; 
+}
+
+.search-bar .mat-input-element { 
+  color: #f8fafc !important; 
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.search-bar .mat-form-field-label { 
+  color: #cbd5e1 !important; 
+}
+
+::ng-deep .search-bar .mat-form-field-outline {
+  color: rgba(255,255,255,0.2) !important;
+}
+
+::ng-deep .search-bar .mat-form-field-outline-thick {
+  color: #8b5cf6 !important;
+}
+
+/* Enhanced Table Container */
+.table-container {
+  background: #0f1629;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.categories-table { 
+  width: 100%; 
+  border-collapse: collapse; 
+  background: #0f1629; 
+}
+
+.mat-header-cell { 
+  font-weight: 700; 
+  color: #f8fafc !important; 
+  background: #1a2332; 
+  border-bottom: 1px solid rgba(255,255,255,0.08); 
+  padding: 20px 16px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mat-cell { 
+  color: #f1f5f9 !important; 
+  padding: 20px 16px; 
+  border-bottom: 1px solid rgba(255,255,255,0.06); 
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.categories-table tr:nth-child(even) { 
+  background-color: rgba(255,255,255,0.02); 
+}
+
+.categories-table tr:hover { 
+  background-color: rgba(139,92,246,0.08); 
+  transform: scale(1.001);
+  transition: all 0.2s ease;
+}
+
+/* Enhanced Action Buttons */
+button[mat-icon-button] { 
+  background: #8b5cf6; 
+  color: #fff; 
+  border-radius: 12px; 
+  width: 48px; 
+  height: 48px; 
+  transition: all 0.3s ease; 
+  margin: 0 6px;
+  box-shadow: 0 4px 12px rgba(139,92,246,0.3);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+button[mat-icon-button]:hover { 
+  background: #7c3aed; 
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(139,92,246,0.4);
+  border-color: rgba(255,255,255,0.2);
+}
+
+button[mat-icon-button]:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Edit Button Specific Styling */
+.edit-btn {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
+  box-shadow: 0 4px 12px rgba(59,130,246,0.3) !important;
+}
+
+.edit-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #1e40af) !important;
+  box-shadow: 0 8px 20px rgba(59,130,246,0.5) !important;
+  transform: translateY(-3px) scale(1.05) !important;
+}
+
+/* Delete Button Specific Styling */
+.delete-btn {
+  background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+  box-shadow: 0 4px 12px rgba(239,68,68,0.3) !important;
+}
+
+.delete-btn:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+  box-shadow: 0 8px 20px rgba(239,68,68,0.5) !important;
+  transform: translateY(-3px) scale(1.05) !important;
+}
+
+/* Button Icons */
+button[mat-icon-button] mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  transition: transform 0.2s ease;
+}
+
+button[mat-icon-button]:hover mat-icon {
+  transform: scale(1.1);
+}
+
+/* Action Buttons Container */
+.mat-cell:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 16px !important;
+}
+
+/* Tooltip Styling for Better UX */
+::ng-deep .mat-tooltip {
+  background: #1f2937 !important;
+  color: #f8fafc !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+/* Force tooltip text to be white */
+::ng-deep .mat-tooltip * {
+  color: #f8fafc !important;
+}
+
+/* Override any tooltip text color */
+::ng-deep .mat-tooltip,
+::ng-deep .mat-tooltip::before,
+::ng-deep .mat-tooltip::after {
+  color: #f8fafc !important;
+}
+
+/* Additional tooltip overrides for maximum compatibility */
+::ng-deep .cdk-overlay-container .mat-tooltip {
+  color: #f8fafc !important;
+  background: #1f2937 !important;
+}
+
+::ng-deep .cdk-overlay-container .mat-tooltip * {
+  color: #f8fafc !important;
+}
+
+/* Force all tooltip content to be white */
+::ng-deep [matTooltip] + .mat-tooltip {
+  color: #f8fafc !important;
+  background: #1f2937 !important;
+}
+
+/* Additional comprehensive tooltip fixes */
+::ng-deep .mat-tooltip-panel {
+  background: #1f2937 !important;
+  color: #f8fafc !important;
+}
+
+::ng-deep .mat-tooltip-panel .mat-tooltip {
+  color: #f8fafc !important;
+  background: #1f2937 !important;
+}
+
+/* Force tooltip text color with maximum specificity */
+::ng-deep .mat-tooltip,
+::ng-deep .mat-tooltip-panel,
+::ng-deep .mat-tooltip-panel *,
+::ng-deep .cdk-overlay-container .mat-tooltip,
+::ng-deep .cdk-overlay-container .mat-tooltip *,
+::ng-deep .cdk-overlay-backdrop + .cdk-overlay-pane .mat-tooltip,
+::ng-deep .cdk-overlay-backdrop + .cdk-overlay-pane .mat-tooltip * {
+  color: #f8fafc !important;
+  background: #1f2937 !important;
+}
+
+/* Override any inherited text color */
+::ng-deep .mat-tooltip,
+::ng-deep .mat-tooltip-panel {
+  color: #f8fafc !important;
+  background: #1f2937 !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+/* Custom tooltip class for white text */
+::ng-deep .white-tooltip {
+  color: #f8fafc !important;
+  background: #1f2937 !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+::ng-deep .white-tooltip * {
+  color: #f8fafc !important;
+}
+
+::ng-deep .white-tooltip::before,
+::ng-deep .white-tooltip::after {
+  color: #f8fafc !important;
+}
+
+/* Enhanced Loading State */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.loading-spinner {
+  margin-bottom: 24px;
+}
+
+::ng-deep .mat-progress-spinner circle {
+  stroke: #8b5cf6;
+}
+
+.loading-text {
+  color: #cbd5e1;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Enhanced Empty State */
+.empty-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 24px;
+  opacity: 0.6;
+}
+
+.empty-title {
+  color: #f8fafc;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.empty-subtitle {
+  color: #cbd5e1;
+  font-size: 16px;
+  margin: 0 0 32px 0;
+}
+
+.add-first-btn {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed) !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+  padding: 12px 24px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(139,92,246,0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.add-first-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(139,92,246,0.4) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 24px;
+    text-align: center;
+  }
+  
+  .search-section {
+    margin-bottom: 24px;
+  }
+  
+  .search-bar {
+    max-width: none;
+  }
+  
+  .table-container {
+    overflow-x: auto;
+  }
+  
+  .categories-table {
+    min-width: 600px;
+  }
+}
+
+/* Animation for smooth transitions */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.categories-content {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f1629;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8b5cf6;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7c3aed;
+}
+
+/* Force all table content to be white - Maximum specificity */
+::ng-deep .mat-table tbody tr td { 
+  color: #ffffff !important; 
+}
+
+::ng-deep .mat-table tbody tr td * { 
+  color: #ffffff !important; 
+}
+
+::ng-deep .mat-table tbody tr td span { 
+  color: #ffffff !important; 
+}
+
+::ng-deep .mat-table tbody tr td div { 
+  color: #ffffff !important; 
+}
+
+/* Override any Angular Material text colors */
+::ng-deep .mat-table .mat-cell, 
+::ng-deep .mat-table .mat-cell *,
+::ng-deep .mat-table td,
+::ng-deep .mat-table td *,
+::ng-deep .mat-table tbody td,
+::ng-deep .mat-table tbody td * {
+  color: #ffffff !important;
+}
+
+/* Specific targeting for category names */
+::ng-deep .mat-table .mat-cell:nth-child(2) { /* Name column */
+  color: #ffffff !important;
+}
+
+::ng-deep .mat-table .mat-cell:nth-child(2) * {
+  color: #ffffff !important;
+}

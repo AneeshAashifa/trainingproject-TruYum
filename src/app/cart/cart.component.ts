@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 import { CartService } from '../services/cart.service';
 import { OrdersService } from '../services/orders.service';
 import { SignalrService } from '../services/signalr.service';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-cart',
@@ -33,7 +34,8 @@ export class CartComponent implements OnInit, OnDestroy {
     private router: Router,
     private cartService: CartService,
     private ordersService: OrdersService,
-    private signalr: SignalrService
+    private signalr: SignalrService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit() {
@@ -46,7 +48,11 @@ export class CartComponent implements OnInit, OnDestroy {
           this.cart = payload;
         });
         this.signalr.on('OrderPlaced', (payload) => {
-          alert(`✅ Order placed! Total: ₹${payload.total ?? payload.Total}`);
+          this.toastService.showSuccess(
+            'Order Placed Successfully! 🎉',
+            `Your order has been placed with a total of ₹${payload.total ?? payload.Total}`,
+            4000
+          );
         });
       });
     }
@@ -75,7 +81,13 @@ export class CartComponent implements OnInit, OnDestroy {
     const id = item.menuItemId || item.MenuItemId;
     this.cartService.increaseQuantity(id).subscribe({
       next: () => this.loadCart(),
-      error: (err) => alert('Failed to increase: ' + err.message)
+      error: (err) => {
+        if (err.status === 401) {
+          this.toastService.showError('Please Sign In First! 🔐', 'You need to sign in to modify your cart.', 4000, true, 'Sign In', () => this.router.navigate(['/user-login']));
+        } else {
+          this.toastService.showError('Failed to Update', 'Could not increase quantity. Please try again.', 3000);
+        }
+      }
     });
   }
 
@@ -84,7 +96,13 @@ export class CartComponent implements OnInit, OnDestroy {
     const id = item.menuItemId || item.MenuItemId;
     this.cartService.decreaseQuantity(id).subscribe({
       next: () => this.loadCart(),
-      error: (err) => alert('Failed to decrease: ' + err.message)
+      error: (err) => {
+        if (err.status === 401) {
+          this.toastService.showError('Please Sign In First! 🔐', 'You need to sign in to modify your cart.', 4000, true, 'Sign In', () => this.router.navigate(['/user-login']));
+        } else {
+          this.toastService.showError('Failed to Update', 'Could not decrease quantity. Please try again.', 3000);
+        }
+      }
     });
   }
 
@@ -93,7 +111,13 @@ export class CartComponent implements OnInit, OnDestroy {
     const id = item.menuItemId || item.MenuItemId;
     this.cartService.removeFromCart(id).subscribe({
       next: () => this.loadCart(),
-      error: (err) => alert('Failed to remove: ' + err.message)
+      error: (err) => {
+        if (err.status === 401) {
+          this.toastService.showError('Please Sign In First! 🔐', 'You need to sign in to modify your cart.', 4000, true, 'Sign In', () => this.router.navigate(['/user-login']));
+        } else {
+          this.toastService.showError('Failed to Remove', 'Could not remove item from cart. Please try again.', 3000);
+        }
+      }
     });
   }
 
@@ -103,8 +127,23 @@ export class CartComponent implements OnInit, OnDestroy {
       next: (res: any) => {
         this.router.navigate(['/order-confirmation'], { state: { order: res } });
       },
-      error: (err) => alert('Checkout failed: ' + err.message)
+      error: (err) => {
+        if (err.status === 401) {
+          this.toastService.showError('Please Sign In First! 🔐', 'You need to sign in to place an order.', 4000, true, 'Sign In', () => this.router.navigate(['/user-login']));
+        } else {
+          this.toastService.showError('Checkout Failed', 'Could not place your order. Please try again.', 4000);
+        }
+      }
     });
+  }
+
+  // ✅ Image fallback for broken item images in cart
+  onCartImgError(event: Event) {
+    const img = event.target as HTMLImageElement | null;
+    if (img && !img.dataset['fallback']) {
+      img.src = 'assets/images/default-food.jpg';
+      img.dataset['fallback'] = 'true';
+    }
   }
 
   ngOnDestroy() {

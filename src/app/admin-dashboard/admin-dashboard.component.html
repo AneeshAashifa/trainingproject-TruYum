@@ -1,26 +1,50 @@
 <mat-card class="admin-card">
-  <mat-toolbar class="toolbar custom-toolbar" color="primary">
-    <span class="title">🍽 Admin Dashboard</span>
-    <span class="spacer"></span>
+  <!-- Enhanced Header -->
+  <div class="dashboard-header">
+    <div class="header-content">
+      <div class="header-left">
+        <div class="dashboard-icon">🍽</div>
+        <div class="header-text">
+          <h1 class="dashboard-title">Admin Dashboard</h1>
+          <p class="dashboard-subtitle">Manage your restaurant menu and categories</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="stats-card">
+          <div class="stat-item">
+            <span class="stat-number">{{ dataSource.length }}</span>
+            <span class="stat-label">Total Items</span>
+          </div>
+        </div>
+        <button mat-raised-button class="logout-btn" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
 
-    <!-- Logout button -->
-    <button mat-raised-button color="accent" class="logout-btn" (click)="logout()">
-      Logout
-    </button>
-  </mat-toolbar>
-
-  <!-- Tabs -->
-  <mat-tab-group>
+  <!-- Enhanced Tabs -->
+  <mat-tab-group class="dashboard-tabs">
     <!-- Menu Items Tab -->
-    <mat-tab label="Menu">
-      <div class="table-wrap" *ngIf="!isLoading; else loading">
-        <!-- 🔍 Search Bar -->
-        <mat-form-field appearance="outline" class="search-bar">
-          <mat-label>Search menu items</mat-label>
-          <input matInput (input)="applyFilter($event)" placeholder="Type name or category">
-          <mat-icon matSuffix>search</mat-icon>
-        </mat-form-field>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z2 full-table modern-table">
+    <mat-tab label="Menu Items">
+      <div class="tab-content" *ngIf="!isLoading; else loading">
+        <!-- Enhanced Search Section -->
+        <div class="search-section">
+          <mat-form-field appearance="outline" class="search-bar">
+            <mat-label>Search menu items</mat-label>
+            <input matInput (input)="applyFilter($event)" placeholder="Type name or category">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <button mat-raised-button class="add-item-btn" (click)="openAdd()">
+            <mat-icon>add</mat-icon>
+            Add New Item
+          </button>
+        </div>
+
+        <!-- Enhanced Table Container -->
+        <div class="table-container">
+          <table mat-table [dataSource]="dataSource" class="modern-table">
           <!-- ID -->
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -77,34 +101,47 @@
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef>Actions</th>
             <td mat-cell *matCellDef="let el">
-              <button mat-icon-button color="primary" (click)="openEdit(el)">
+              <button mat-icon-button 
+                      matTooltip="Edit Item" 
+                      matTooltipPosition="above"
+                      matTooltipClass="white-tooltip"
+                      (click)="openEdit(el)"
+                      class="edit-btn">
                 <mat-icon>edit</mat-icon>
               </button>
-              <button mat-icon-button color="warn" (click)="confirmDelete(el)">
+              <button mat-icon-button 
+                      matTooltip="Delete Item" 
+                      matTooltipPosition="above"
+                      matTooltipClass="white-tooltip"
+                      (click)="confirmDelete(el)"
+                      class="delete-btn">
                 <mat-icon>delete</mat-icon>
               </button>
             </td>
           </ng-container>
 
-          <!-- Rows -->
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
-
-        <!-- Add Item FAB -->
-        <button mat-fab color="warn" class="add-btn" (click)="openAdd()" aria-label="Add item">
-          <mat-icon>add</mat-icon>
-        </button>
+            <!-- Rows -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
       </div>
 
       <ng-template #loading>
-        <div class="loading">Loading items…</div>
+        <div class="loading-container">
+          <div class="loading-spinner">
+            <mat-spinner diameter="40"></mat-spinner>
+          </div>
+          <p class="loading-text">Loading menu items...</p>
+        </div>
       </ng-template>
     </mat-tab>
 
     <!-- Categories Tab -->
     <mat-tab label="Categories">
-      <app-admin-categories></app-admin-categories>
+      <div class="tab-content">
+        <app-admin-categories></app-admin-categories>
+      </div>
     </mat-tab>
   </mat-tab-group>
 </mat-card>

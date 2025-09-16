@@ -1,10 +1,243 @@
+/* Dark theme for confirm dialog */
 :host {
-  display: block;
-  min-width: 300px;
+  display: block !important;
+  color: #f8fafc !important;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #111827 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-width: 400px !important;
+  max-width: 500px !important;
 }
 
-div[mat-dialog-content] {
-  margin: 12px 0;
-  font-size: 14px;
-  color: #444;
+/* Global text color override */
+:host * {
+  color: #ffffff !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Override Angular Material dialog styles */
+::ng-deep .mat-dialog-container {
+  background: #111827 !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  min-width: 400px !important;
+  max-width: 500px !important;
+}
+
+/* Ensure dialog backdrop is properly styled */
+::ng-deep .cdk-overlay-backdrop {
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Ensure dialog panel is visible */
+::ng-deep .cdk-overlay-pane {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Force all dialog content to be visible */
+::ng-deep .mat-dialog-container * {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+/* Enhanced Dialog Header */
+.dialog-header {
+  background: linear-gradient(135deg, #0f1629 0%, #1a2332 100%);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.header-icon {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(239,68,68,0.3);
+}
+
+.header-icon mat-icon {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  color: #ffffff !important;
+}
+
+.header-text {
+  flex: 1;
+}
+
+.dialog-title {
+  margin: 0 !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #f8fafc !important;
+  letter-spacing: -0.3px;
+}
+
+/* Enhanced Dialog Content */
+.dialog-content {
+  padding: 24px !important;
+  background: #111827 !important;
+  margin: 0 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.message-container {
+  text-align: center;
+  padding: 8px 0;
+}
+
+.confirm-message {
+  font-size: 16px !important;
+  color: #f8fafc !important;
+  font-weight: 500 !important;
+  margin: 0 0 12px 0 !important;
+  line-height: 1.5;
+}
+
+.warning-text {
+  font-size: 14px !important;
+  color: #ef4444 !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+  background: rgba(239,68,68,0.1);
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(239,68,68,0.2);
+  display: inline-block;
+}
+
+/* Enhanced Dialog Actions */
+.dialog-actions {
+  padding: 16px 24px 24px 24px !important;
+  background: #0f1629 !important;
+  margin: 0 !important;
+  border-top: 1px solid rgba(255,255,255,0.08) !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 12px !important;
+}
+
+.cancel-btn {
+  background: transparent !important;
+  color: #cbd5e1 !important;
+  border: 2px solid rgba(255,255,255,0.2) !important;
+  border-radius: 8px !important;
+  padding: 10px 20px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+.cancel-btn:hover {
+  background: rgba(255,255,255,0.05) !important;
+  border-color: rgba(255,255,255,0.3) !important;
+  color: #f8fafc !important;
+  transform: translateY(-1px);
+}
+
+.confirm-btn {
+  background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  padding: 10px 20px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(239,68,68,0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.confirm-btn:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+  box-shadow: 0 6px 16px rgba(239,68,68,0.4) !important;
+  transform: translateY(-1px);
+}
+
+/* Button Icons */
+.cancel-btn mat-icon,
+.confirm-btn mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  margin-right: 8px;
+}
+
+/* Animation for dialog appearance */
+@keyframes dialogSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+::ng-deep .mat-dialog-container {
+  animation: dialogSlideIn 0.3s ease-out !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  :host {
+    min-width: 320px !important;
+    max-width: 90vw !important;
+  }
+  
+  .dialog-header {
+    padding: 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .dialog-content {
+    padding: 20px !important;
+  }
+  
+  .dialog-actions {
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px 20px 20px 20px !important;
+  }
+  
+  .cancel-btn,
+  .confirm-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Focus states for accessibility */
+.cancel-btn:focus,
+.confirm-btn:focus {
+  outline: 2px solid rgba(239,68,68,0.5);
+  outline-offset: 2px;
+}
+
+/* Ensure all elements are visible */
+::ng-deep .mat-button {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: inline-block !important;
+}
+
+::ng-deep .mat-icon {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: inline-block !important;
 }
