@@ -58,6 +58,7 @@ export class AdminDashboardComponent implements OnInit {
   dataSource: any[] = [];
   originalData: any[] = [];
   isLoading = false;
+  searchValue = '';
 
   constructor(
     private adminService: AdminService,
@@ -89,10 +90,28 @@ export class AdminDashboardComponent implements OnInit {
   /** 🔹 Search filter */
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    this.dataSource = this.originalData.filter(el =>
-      el.name.toLowerCase().includes(filterValue) ||
-      el.category.toLowerCase().includes(filterValue)
-    );
+    this.searchValue = filterValue;
+    
+    if (!filterValue) {
+      this.dataSource = [...this.originalData];
+      return;
+    }
+    
+    this.dataSource = this.originalData.filter(el => {
+      const name = el.name?.toLowerCase() || '';
+      const category = el.categoryName?.toLowerCase() || el.category?.toLowerCase() || '';
+      const description = el.description?.toLowerCase() || '';
+      
+      return name.includes(filterValue) || 
+             category.includes(filterValue) || 
+             description.includes(filterValue);
+    });
+  }
+
+  /** 🔹 Clear search */
+  clearSearch(): void {
+    this.searchValue = '';
+    this.dataSource = [...this.originalData];
   }
 
   /** 🔹 Open Add Dialog */

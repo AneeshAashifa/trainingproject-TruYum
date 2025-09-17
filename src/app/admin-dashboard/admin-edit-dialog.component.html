@@ -19,8 +19,13 @@
 
     <mat-form-field appearance="outline" class="half">
       <mat-label>Category</mat-label>
-      <mat-select formControlName="categoryId">
-        <mat-option *ngFor="let c of categories" [value]="c.id">
+      <mat-select formControlName="categoryId" 
+                  style="color: #ffffff !important;"
+                  [ngStyle]="{'color': '#ffffff'}">
+        <mat-option *ngFor="let c of categories" 
+                    [value]="c.id"
+                    style="color: #ffffff !important; background: #2d3748 !important; font-weight: 600 !important;"
+                    [ngStyle]="{'color': '#ffffff', 'background': '#2d3748', 'font-weight': '600'}">
           {{ c.name }}
         </mat-option>
       </mat-select>
@@ -28,9 +33,15 @@
 
     <mat-form-field appearance="outline" class="half">
       <mat-label>Veg</mat-label>
-      <mat-select formControlName="veg">
-        <mat-option [value]="true">Veg</mat-option>
-        <mat-option [value]="false">Non-Veg</mat-option>
+      <mat-select formControlName="veg"
+                  style="color: #ffffff !important;"
+                  [ngStyle]="{'color': '#ffffff'}">
+        <mat-option [value]="true"
+                    style="color: #ffffff !important; background: #2d3748 !important; font-weight: 600 !important;"
+                    [ngStyle]="{'color': '#ffffff', 'background': '#2d3748', 'font-weight': '600'}">Veg</mat-option>
+        <mat-option [value]="false"
+                    style="color: #ffffff !important; background: #2d3748 !important; font-weight: 600 !important;"
+                    [ngStyle]="{'color': '#ffffff', 'background': '#2d3748', 'font-weight': '600'}">Non-Veg</mat-option>
       </mat-select>
     </mat-form-field>
 

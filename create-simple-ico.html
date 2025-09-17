@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple ICO Creator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .preview {
+            width: 64px;
+            height: 64px;
+            border: 2px solid #ddd;
+            margin: 20px auto;
+            display: block;
+            image-rendering: pixelated;
+        }
+        .download-btn {
+            background: #1e3a8a;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto;
+            width: 200px;
+        }
+        .download-btn:hover {
+            background: #1e40af;
+        }
+        .instructions {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍽️ Simple TruYum Favicon</h1>
+        <p>This creates a basic favicon that will definitely work.</p>
+        
+        <canvas id="faviconCanvas" class="preview" width="16" height="16"></canvas>
+        
+        <button class="download-btn" onclick="downloadAsICO()">Download as ICO</button>
+        
+        <div class="instructions">
+            <h3>📋 Steps:</h3>
+            <ol>
+                <li>Click "Download as ICO"</li>
+                <li>Save as <code>favicon.ico</code></li>
+                <li>Replace <code>src/favicon.ico</code></li>
+                <li>Press <strong>Ctrl + Shift + R</strong></li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function drawFavicon() {
+            const canvas = document.getElementById('faviconCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, 16, 16);
+            
+            // Colors
+            const darkBlue = '#1e3a8a';
+            const orange = '#f97316';
+            
+            // Chef hat base band
+            ctx.fillStyle = darkBlue;
+            ctx.fillRect(2, 8, 12, 2);
+            
+            // Chef hat main body
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(1, 6, 14, 4);
+            ctx.strokeStyle = darkBlue;
+            ctx.lineWidth = 1;
+            ctx.strokeRect(1, 6, 14, 4);
+            
+            // Chef hat top
+            ctx.fillRect(0, 4, 16, 4);
+            ctx.strokeRect(0, 4, 16, 4);
+            
+            // Burger icon on hat band
+            ctx.fillStyle = orange;
+            ctx.fillRect(6, 9, 4, 1);
+            
+            // Fork (left)
+            ctx.fillStyle = darkBlue;
+            ctx.fillRect(2, 2, 1, 6);
+            ctx.fillRect(1, 2, 3, 1);
+            
+            // Spoon (right)
+            ctx.fillRect(13, 2, 1, 6);
+            ctx.beginPath();
+            ctx.ellipse(13.5, 2.5, 1, 0.5, 0, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        
+        function downloadAsICO() {
+            const canvas = document.getElementById('faviconCanvas');
+            
+            // Convert to data URL
+            const dataURL = canvas.toDataURL('image/png');
+            
+            // Create download link
+            const link = document.createElement('a');
+            link.download = 'favicon.ico';
+            link.href = dataURL;
+            link.click();
+            
+            alert('✅ Downloaded! Now:\n1. Save as "favicon.ico"\n2. Replace src/favicon.ico\n3. Press Ctrl+Shift+R');
+        }
+        
+        // Draw favicon when page loads
+        window.onload = function() {
+            drawFavicon();
+        };
+    </script>
+</body>
+</html>

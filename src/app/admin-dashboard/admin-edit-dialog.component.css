@@ -107,11 +107,13 @@
 
 ::ng-deep .mat-form-field-label {
   color: #cbd5e1 !important;
+  font-weight: 500 !important;
 }
 
 ::ng-deep .mat-input-element {
   color: #f8fafc !important;
   font-size: 14px;
+  font-weight: 500 !important;
 }
 
 ::ng-deep .mat-form-field-outline {
@@ -126,37 +128,208 @@
   color: #3b82f6 !important;
 }
 
-/* Select dropdown */
+/* Enhanced select field styling */
+::ng-deep .mat-form-field.mat-focused .mat-select-arrow {
+  color: #3b82f6 !important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-outline-thick {
+  color: #3b82f6 !important;
+}
+
+/* Make sure select field has proper contrast */
+::ng-deep .mat-form-field .mat-select {
+  background: rgba(255,255,255,0.02) !important;
+  border-radius: 4px !important;
+  padding: 8px 12px !important;
+}
+
+::ng-deep .mat-form-field .mat-select-trigger {
+  min-height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Select dropdown - FIXED FOR VISIBILITY */
 ::ng-deep .mat-select {
-  color: #f8fafc !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
 }
 
 ::ng-deep .mat-select-value {
-  color: #f8fafc !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+}
+
+::ng-deep .mat-select-placeholder {
+  color: #ffffff !important;
+  font-weight: 500 !important;
 }
 
 ::ng-deep .mat-select-arrow {
-  color: #cbd5e1 !important;
+  color: #ffffff !important;
+  font-size: 20px !important;
 }
 
 ::ng-deep .mat-select-panel {
-  background: #1f2937 !important;
-  border: 1px solid rgba(255,255,255,0.1) !important;
+  background: #2d3748 !important;
+  border: 2px solid #4a5568 !important;
   border-radius: 8px !important;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6) !important;
+  min-width: 200px !important;
 }
 
 ::ng-deep .mat-option {
-  color: #f8fafc !important;
-  background: #1f2937 !important;
+  color: #ffffff !important;
+  background: #2d3748 !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  padding: 14px 18px !important;
+  min-height: 50px !important;
+  line-height: 1.5 !important;
+  border-bottom: 1px solid #4a5568 !important;
 }
 
 ::ng-deep .mat-option:hover {
-  background: rgba(59,130,246,0.1) !important;
+  background: #4a5568 !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
 }
 
 ::ng-deep .mat-option.mat-selected {
-  background: rgba(59,130,246,0.2) !important;
-  color: #3b82f6 !important;
+  background: #3182ce !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+::ng-deep .mat-option.mat-active {
+  background: #4a5568 !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+/* Ensure dropdown text is always visible */
+::ng-deep .mat-option .mat-option-text {
+  color: #ffffff !important;
+  font-weight: inherit !important;
+  font-size: inherit !important;
+}
+
+/* Override any potential text hiding */
+::ng-deep .mat-option span {
+  color: #ffffff !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Force all text elements to be white */
+::ng-deep .mat-option * {
+  color: #ffffff !important;
+}
+
+/* Additional dropdown visibility enhancements */
+::ng-deep .mat-select-panel .mat-option {
+  border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+}
+
+::ng-deep .mat-select-panel .mat-option:last-child {
+  border-bottom: none !important;
+}
+
+/* Ensure dropdown overlay has proper z-index */
+::ng-deep .cdk-overlay-container .mat-select-panel {
+  z-index: 9999 !important;
+}
+
+/* Force text visibility in all states */
+::ng-deep .mat-option.mat-option-disabled {
+  color: #6b7280 !important;
+  background: #1f2937 !important;
+}
+
+::ng-deep .mat-option.mat-option-disabled .mat-option-text {
+  color: #6b7280 !important;
+}
+
+/* High contrast for better readability */
+::ng-deep .mat-option {
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3) !important;
+}
+
+::ng-deep .mat-option.mat-selected {
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5) !important;
+}
+
+/* Force white text with maximum specificity */
+::ng-deep .mat-select-panel .mat-option {
+  color: #ffffff !important;
+}
+
+::ng-deep .mat-select-panel .mat-option .mat-option-text {
+  color: #ffffff !important;
+}
+
+::ng-deep .mat-select-panel .mat-option span {
+  color: #ffffff !important;
+}
+
+::ng-deep .mat-select-panel .mat-option div {
+  color: #ffffff !important;
+}
+
+/* Override any Material Design default colors */
+::ng-deep .mat-option.mat-option-multiple {
+  color: #ffffff !important;
+}
+
+::ng-deep .mat-option.mat-option-multiple .mat-option-text {
+  color: #ffffff !important;
+}
+
+/* Ultra-aggressive white text overrides */
+::ng-deep .cdk-overlay-container .mat-select-panel .mat-option {
+  color: #ffffff !important;
+  background: #1f2937 !important;
+}
+
+::ng-deep .cdk-overlay-container .mat-select-panel .mat-option .mat-option-text {
+  color: #ffffff !important;
+}
+
+::ng-deep .cdk-overlay-container .mat-select-panel .mat-option span {
+  color: #ffffff !important;
+}
+
+::ng-deep .cdk-overlay-container .mat-select-panel .mat-option div {
+  color: #ffffff !important;
+}
+
+/* Override any theme-based colors */
+::ng-deep .mat-option.mat-option-multiple .mat-pseudo-checkbox {
+  color: #ffffff !important;
+}
+
+/* Force white on all possible selectors */
+::ng-deep .mat-select-panel .mat-option,
+::ng-deep .mat-select-panel .mat-option .mat-option-text,
+::ng-deep .mat-select-panel .mat-option span,
+::ng-deep .mat-select-panel .mat-option div,
+::ng-deep .mat-select-panel .mat-option p,
+::ng-deep .mat-select-panel .mat-option label {
+  color: #ffffff !important;
+  background: transparent !important;
+}
+
+/* Override any inherited colors */
+::ng-deep .mat-option {
+  color: #ffffff !important;
+  background: #1f2937 !important;
+}
+
+::ng-deep .mat-option * {
+  color: #ffffff !important;
+  background: transparent !important;
 }
 
 /* Checkbox */
@@ -268,4 +441,152 @@
 
 ::ng-deep .mat-dialog-content::-webkit-scrollbar-thumb:hover {
   background: #2563eb;
+}
+
+/* FORCE WHITE TEXT - MAXIMUM SPECIFICITY OVERRIDE */
+::ng-deep .cdk-overlay-container .cdk-overlay-pane .mat-select-panel .mat-option {
+  color: #ffffff !important;
+  background: #2d3748 !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  padding: 16px 20px !important;
+  min-height: 55px !important;
+  line-height: 1.6 !important;
+}
+
+::ng-deep .cdk-overlay-container .cdk-overlay-pane .mat-select-panel .mat-option .mat-option-text {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+}
+
+::ng-deep .cdk-overlay-container .cdk-overlay-pane .mat-select-panel .mat-option span {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+}
+
+::ng-deep .cdk-overlay-container .cdk-overlay-pane .mat-select-panel .mat-option div {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+}
+
+::ng-deep .cdk-overlay-container .cdk-overlay-pane .mat-select-panel .mat-option * {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+}
+
+/* Override any inherited styles */
+::ng-deep .mat-option {
+  color: #ffffff !important;
+  background: #2d3748 !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+}
+
+::ng-deep .mat-option .mat-option-text {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+}
+
+::ng-deep .mat-option span {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+}
+
+::ng-deep .mat-option div {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+}
+
+::ng-deep .mat-option * {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+}
+
+/* ULTRA-AGGRESSIVE WHITE TEXT OVERRIDE - MAXIMUM SPECIFICITY */
+::ng-deep .cdk-overlay-container .cdk-overlay-pane .mat-select-panel .mat-option {
+  color: #ffffff !important;
+  background: #2d3748 !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+}
+
+::ng-deep .cdk-overlay-container .cdk-overlay-pane .mat-select-panel {
+  background: #2d3748 !important;
+  border: 2px solid #4a5568 !important;
+}
+
+::ng-deep .cdk-overlay-container .cdk-overlay-pane .mat-select-panel .mat-option .mat-option-text {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+::ng-deep .cdk-overlay-container .cdk-overlay-pane .mat-select-panel .mat-option span {
+  color: #ffffff !important;
+}
+
+::ng-deep .cdk-overlay-container .cdk-overlay-pane .mat-select-panel .mat-option div {
+  color: #ffffff !important;
+}
+
+::ng-deep .cdk-overlay-container .cdk-overlay-pane .mat-select-panel .mat-option p {
+  color: #ffffff !important;
+}
+
+::ng-deep .cdk-overlay-container .cdk-overlay-pane .mat-select-panel .mat-option label {
+  color: #ffffff !important;
+}
+
+/* Override any inherited text colors */
+::ng-deep .cdk-overlay-container .cdk-overlay-pane .mat-select-panel .mat-option * {
+  color: #ffffff !important;
+}
+
+/* Force white text with !important on every possible selector */
+::ng-deep .mat-select-panel .mat-option,
+::ng-deep .mat-select-panel .mat-option .mat-option-text,
+::ng-deep .mat-select-panel .mat-option span,
+::ng-deep .mat-select-panel .mat-option div,
+::ng-deep .mat-select-panel .mat-option p,
+::ng-deep .mat-select-panel .mat-option label,
+::ng-deep .mat-select-panel .mat-option strong,
+::ng-deep .mat-select-panel .mat-option em,
+::ng-deep .mat-select-panel .mat-option b,
+::ng-deep .mat-select-panel .mat-option i {
+  color: #ffffff !important;
+  background: transparent !important;
+}
+
+/* Override any theme-based text colors */
+::ng-deep .mat-option.mat-option-multiple .mat-pseudo-checkbox .mat-pseudo-checkbox-checked {
+  color: #ffffff !important;
+}
+
+::ng-deep .mat-option.mat-option-multiple .mat-pseudo-checkbox .mat-pseudo-checkbox-unchecked {
+  color: #ffffff !important;
+}
+
+/* Force white text on all states */
+::ng-deep .mat-option.mat-option-disabled {
+  color: #ffffff !important;
+  background: #1f2937 !important;
+}
+
+::ng-deep .mat-option.mat-option-disabled .mat-option-text {
+  color: #ffffff !important;
+}
+
+::ng-deep .mat-option.mat-option-disabled span {
+  color: #ffffff !important;
+}
+
+::ng-deep .mat-option.mat-option-disabled div {
+  color: #ffffff !important;
 }

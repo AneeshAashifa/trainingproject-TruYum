@@ -1,0 +1,24 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="32" height="32" fill="white"/>
+  
+  <!-- Fork -->
+  <rect x="4" y="4" width="2" height="12" fill="#1e3a8a"/>
+  <rect x="3" y="3" width="4" height="2" fill="#1e3a8a" rx="1"/>
+  
+  <!-- Spoon -->
+  <rect x="26" y="4" width="2" height="12" fill="#1e3a8a"/>
+  <ellipse cx="27" cy="5" rx="2" ry="1" fill="#1e3a8a"/>
+  
+  <!-- Chef Hat Base -->
+  <rect x="6" y="12" width="20" height="4" fill="#1e3a8a" rx="2"/>
+  
+  <!-- Chef Hat Main -->
+  <rect x="4" y="8" width="24" height="8" fill="white" stroke="#1e3a8a" stroke-width="2" rx="8"/>
+  
+  <!-- Chef Hat Top -->
+  <rect x="2" y="6" width="28" height="6" fill="white" stroke="#1e3a8a" stroke-width="2" rx="8"/>
+  
+  <!-- Burger Icon -->
+  <rect x="12" y="14" width="8" height="5" fill="#f97316" rx="1"/>
+</svg>

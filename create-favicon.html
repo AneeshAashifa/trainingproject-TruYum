@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruYum Favicon Creator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .preview {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            align-items: center;
+        }
+        .favicon-16 {
+            width: 16px;
+            height: 16px;
+            border: 1px solid #ddd;
+            image-rendering: pixelated;
+        }
+        .favicon-32 {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ddd;
+            image-rendering: pixelated;
+        }
+        .download-btn {
+            background: #1e3a8a;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        .download-btn:hover {
+            background: #1e40af;
+        }
+        .instructions {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍽️ TruYum Favicon Creator</h1>
+        <p>Generate your personalized TruYum favicon with the chef's hat, cutlery, and burger icon.</p>
+        
+        <div class="preview">
+            <div>
+                <h3>16x16 Favicon</h3>
+                <canvas id="canvas16" class="favicon-16" width="16" height="16"></canvas>
+                <br><br>
+                <button class="download-btn" onclick="downloadFavicon(16)">Download 16x16 ICO</button>
+            </div>
+            <div>
+                <h3>32x32 Favicon</h3>
+                <canvas id="canvas32" class="favicon-32" width="32" height="32"></canvas>
+                <br><br>
+                <button class="download-btn" onclick="downloadFavicon(32)">Download 32x32 ICO</button>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h3>📋 Instructions:</h3>
+            <ol>
+                <li>Click "Download 16x16 ICO" to get the favicon file</li>
+                <li>Replace the file <code>public/favicon.ico</code> in your project</li>
+                <li>Clear your browser cache (Ctrl+F5 or Cmd+Shift+R)</li>
+                <li>Refresh your Angular app to see the new favicon!</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function drawTruYumFavicon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const scale = size / 16;
+            
+            // Clear with white background
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, size, size);
+            
+            // Colors
+            const darkBlue = '#1e3a8a';
+            const orange = '#f97316';
+            
+            // Fork (left side)
+            ctx.fillStyle = darkBlue;
+            ctx.fillRect(2 * scale, 2 * scale, 1 * scale, 8 * scale);
+            // Fork prongs
+            ctx.fillRect(1 * scale, 2 * scale, 3 * scale, 1 * scale);
+            ctx.fillRect(1 * scale, 3 * scale, 3 * scale, 1 * scale);
+            
+            // Spoon (right side)
+            ctx.fillRect(13 * scale, 2 * scale, 1 * scale, 8 * scale);
+            // Spoon bowl
+            ctx.beginPath();
+            ctx.ellipse(13.5 * scale, 2.5 * scale, 1.5 * scale, 1 * scale, 0, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Chef hat base band
+            ctx.fillRect(3 * scale, 8 * scale, 10 * scale, 2 * scale);
+            
+            // Chef hat main body
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(2 * scale, 6 * scale, 12 * scale, 4 * scale);
+            ctx.strokeStyle = darkBlue;
+            ctx.lineWidth = 1 * scale;
+            ctx.strokeRect(2 * scale, 6 * scale, 12 * scale, 4 * scale);
+            
+            // Chef hat top
+            ctx.fillRect(1 * scale, 4 * scale, 14 * scale, 4 * scale);
+            ctx.strokeRect(1 * scale, 4 * scale, 14 * scale, 4 * scale);
+            
+            // Burger icon on hat band
+            ctx.fillStyle = orange;
+            ctx.fillRect(6 * scale, 9 * scale, 4 * scale, 2 * scale);
+            // Burger details
+            ctx.fillRect(5 * scale, 8.5 * scale, 6 * scale, 0.5 * scale); // top bun
+            ctx.fillRect(5 * scale, 9.5 * scale, 6 * scale, 0.5 * scale); // bottom bun
+        }
+        
+        function downloadFavicon(size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            drawTruYumFavicon(canvas, size);
+            
+            // Convert to ICO format
+            const dataURL = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = `truyum-favicon-${size}x${size}.ico`;
+            link.href = dataURL;
+            link.click();
+        }
+        
+        // Draw favicons when page loads
+        window.onload = function() {
+            drawTruYumFavicon(document.getElementById('canvas16'), 16);
+            drawTruYumFavicon(document.getElementById('canvas32'), 32);
+        };
+    </script>
+</body>
+</html>

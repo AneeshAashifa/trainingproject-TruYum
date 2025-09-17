@@ -33,8 +33,18 @@
         <div class="search-section">
           <mat-form-field appearance="outline" class="search-bar">
             <mat-label>Search menu items</mat-label>
-            <input matInput (input)="applyFilter($event)" placeholder="Type name or category">
+            <input matInput 
+                   (input)="applyFilter($event)" 
+                   [value]="searchValue"
+                   placeholder="Type name, category, or description">
             <mat-icon matSuffix>search</mat-icon>
+            <button mat-icon-button 
+                    matSuffix 
+                    *ngIf="searchValue" 
+                    (click)="clearSearch()"
+                    matTooltip="Clear search">
+              <mat-icon>clear</mat-icon>
+            </button>
           </mat-form-field>
           <button mat-raised-button class="add-item-btn" (click)="openAdd()">
             <mat-icon>add</mat-icon>
@@ -44,7 +54,19 @@
 
         <!-- Enhanced Table Container -->
         <div class="table-container">
-          <table mat-table [dataSource]="dataSource" class="modern-table">
+          <!-- No results message -->
+          <div *ngIf="searchValue && dataSource.length === 0" class="no-results">
+            <mat-card>
+              <div class="no-results-content">
+                <mat-icon>search_off</mat-icon>
+                <h3>No items found</h3>
+                <p>No menu items match your search for "{{ searchValue }}"</p>
+                <button mat-button (click)="clearSearch()">Clear search</button>
+              </div>
+            </mat-card>
+          </div>
+          
+          <table mat-table [dataSource]="dataSource" class="modern-table" *ngIf="dataSource.length > 0">
           <!-- ID -->
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef>ID</th>

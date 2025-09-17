@@ -1,27 +1,61 @@
 <div class="chatbot-container">
   <!-- Floating Button -->
-  <button class="chat-toggle" (click)="toggleChat()">
-    💬
+  <button class="chat-toggle" (click)="toggleChat()" [class.open]="isOpen">
+    <span class="chat-icon" *ngIf="!isOpen">💬</span>
+    <span class="close-icon" *ngIf="isOpen">✖</span>
   </button>
 
   <!-- Chat Window -->
-  <div class="chat-window" *ngIf="isOpen">
+  <div class="chat-window" *ngIf="isOpen" [@slideInOut]>
     <div class="chat-header">
-      <span>🤖 TruYum Assistant</span>
-      <button class="close-btn" (click)="toggleChat()">✖</button>
+      <div class="header-content">
+        <div class="bot-avatar">🍽️</div>
+        <div class="header-text">
+          <h3>TruYum Assistant</h3>
+          <p>How can I help you today?</p>
+        </div>
+      </div>
+      <button class="close-btn" (click)="toggleChat()">
+        <span>✖</span>
+      </button>
     </div>
 
     <div class="chat-body">
-      <div *ngFor="let msg of messages">
-        <div [ngClass]="{'user-msg': msg.sender === 'You', 'bot-msg': msg.sender === 'Bot'}">
-          <strong>{{ msg.sender }}:</strong> {{ msg.text }}
+      <div class="welcome-message" *ngIf="messages.length === 0">
+        <div class="welcome-content">
+          <div class="welcome-icon">👋</div>
+          <h4>Welcome to TruYum!</h4>
+          <p>I'm here to help you with your food orders, menu questions, and any assistance you need.</p>
+        </div>
+      </div>
+      
+      <div class="messages-container">
+        <div *ngFor="let msg of messages" class="message-wrapper">
+          <div [ngClass]="{'user-msg': msg.sender === 'You', 'bot-msg': msg.sender === 'Bot'}">
+            <div class="message-avatar" *ngIf="msg.sender === 'Bot'">🤖</div>
+            <div class="message-content">
+              <div class="message-text">{{ msg.text }}</div>
+              <div class="message-time">{{ getCurrentTime() }}</div>
+            </div>
+            <div class="message-avatar" *ngIf="msg.sender === 'You'">👤</div>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="chat-footer">
-      <input [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Type a message..." />
-      <button (click)="sendMessage()">Send</button>
+      <div class="input-container">
+        <input 
+          [(ngModel)]="userInput" 
+          (keyup.enter)="sendMessage()" 
+          placeholder="Ask about our menu, orders, or anything else..." 
+          class="message-input"
+        />
+        <button class="send-btn" (click)="sendMessage()" [disabled]="!userInput.trim()">
+          <span>Send</span>
+          <span class="send-icon">📤</span>
+        </button>
+      </div>
     </div>
   </div>
 </div>

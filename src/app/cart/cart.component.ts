@@ -109,8 +109,17 @@ export class CartComponent implements OnInit, OnDestroy {
   // ✅ Remove item
   removeItem(item: any) {
     const id = item.menuItemId || item.MenuItemId;
+    const itemName = item.menuItem?.name || item.MenuItem?.Name || 'Item';
+    
     this.cartService.removeFromCart(id).subscribe({
-      next: () => this.loadCart(),
+      next: () => {
+        this.loadCart();
+        this.toastService.showSuccess(
+          'Item Removed Successfully! 🗑️',
+          `${itemName} has been removed from your cart.`,
+          3000
+        );
+      },
       error: (err) => {
         if (err.status === 401) {
           this.toastService.showError('Please Sign In First! 🔐', 'You need to sign in to modify your cart.', 4000, true, 'Sign In', () => this.router.navigate(['/user-login']));
