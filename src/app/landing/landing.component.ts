@@ -53,6 +53,8 @@ export class LandingComponent implements OnInit {
       { keyword: 'cake', file: 'black-forest-cake.jpg' },
       { keyword: 'tea', file: 'Lemon Iced Tea.jpg' },
       { keyword: 'coffee', file: 'cold-coffee.jpg' },
+      { keyword: 'juice', file: 'fresh-juice.jpg' },
+      { keyword: 'fresh', file: 'fresh-juice.jpg' },
       { keyword: 'beverage', file: 'beverage.jpg' },
       { keyword: 'starter', file: 'starter.jpg' },
       { keyword: 'snack', file: 'snack.jpg' },
