@@ -57,7 +57,6 @@ export class AdminEditDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // ✅ Fetch categories from API
     this.http.get<any[]>(`${environment.apiUrl}/categories`).subscribe({
       next: res => (this.categories = res),
       error: err => {

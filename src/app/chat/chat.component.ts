@@ -41,10 +41,8 @@ export class ChatComponent {
   sendMessage() {
     if (!this.userInput.trim()) return;
 
-    // Push user message
     this.messages.push({ sender: 'You', text: this.userInput });
 
-    // Call backend
     this.chatService.sendMessage({ message: this.userInput, conversationId: this.conversationId })
       .subscribe({
         next: (res: ChatResponse) => {
@@ -56,7 +54,6 @@ export class ChatComponent {
         }
       });
 
-    // Clear input
     this.userInput = '';
   }
 }

@@ -41,7 +41,6 @@ export class CartComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.loadCart();
 
-    // ✅ Live cart updates if logged in
     if (localStorage.getItem('token')) {
       this.signalr.startConnection(() => {
         this.signalr.on('CartUpdated', (payload) => {
@@ -58,7 +57,6 @@ export class CartComponent implements OnInit, OnDestroy {
     }
   }
 
-  // ✅ Total calculation
   get totalAmount(): number {
     if (!this.cart?.items) return 0;
     return this.cart.items.reduce((sum: number, item: any) => {
@@ -68,7 +66,6 @@ export class CartComponent implements OnInit, OnDestroy {
     }, 0);
   }
 
-  // ✅ Fetch cart from backend
   loadCart() {
     this.cartService.getCart().subscribe({
       next: (res) => (this.cart = res),
@@ -76,7 +73,6 @@ export class CartComponent implements OnInit, OnDestroy {
     });
   }
 
-  // ✅ Increase quantity
   increase(item: any) {
     const id = item.menuItemId || item.MenuItemId;
     this.cartService.increaseQuantity(id).subscribe({
@@ -91,7 +87,6 @@ export class CartComponent implements OnInit, OnDestroy {
     });
   }
 
-  // ✅ Decrease quantity
   decrease(item: any) {
     const id = item.menuItemId || item.MenuItemId;
     this.cartService.decreaseQuantity(id).subscribe({
@@ -106,7 +101,6 @@ export class CartComponent implements OnInit, OnDestroy {
     });
   }
 
-  // ✅ Remove item
   removeItem(item: any) {
     const id = item.menuItemId || item.MenuItemId;
     const itemName = item.menuItem?.name || item.MenuItem?.Name || 'Item';
@@ -129,8 +123,6 @@ export class CartComponent implements OnInit, OnDestroy {
       }
     });
   }
-
-  // ✅ Checkout
   checkout() {
     this.ordersService.placeOrder().subscribe({
       next: (res: any) => {
@@ -146,7 +138,6 @@ export class CartComponent implements OnInit, OnDestroy {
     });
   }
 
-  // ✅ Image fallback for broken item images in cart
   onCartImgError(event: Event) {
     const img = event.target as HTMLImageElement | null;
     if (img && !img.dataset['fallback']) {
@@ -156,7 +147,6 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // ✅ Clean SignalR listeners
     this.signalr.off('CartUpdated');
     this.signalr.off('OrderPlaced');
     this.subs.forEach((s) => s.unsubscribe());

@@ -13,7 +13,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
-
 import { AdminService } from '../services/admin.service';
 import { AdminEditDialogComponent } from './admin-edit-dialog.component';
 import { ConfirmDialogComponent } from './confirm-dialog.component';
@@ -70,8 +69,6 @@ export class AdminDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.loadItems();
   }
-
-  /** 🔹 Load all items */
   loadItems(): void {
     this.isLoading = true;
     this.adminService.getAll().subscribe({
@@ -87,7 +84,6 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  /** 🔹 Search filter */
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
     this.searchValue = filterValue;
@@ -108,13 +104,11 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  /** 🔹 Clear search */
   clearSearch(): void {
     this.searchValue = '';
     this.dataSource = [...this.originalData];
   }
 
-  /** 🔹 Open Add Dialog */
   openAdd(): void {
     const ref = this.dialog.open(AdminEditDialogComponent, {
       data: { mode: 'add' },
@@ -126,7 +120,6 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  /** 🔹 Open Edit Dialog */
   openEdit(item: any): void {
     const ref = this.dialog.open(AdminEditDialogComponent, {
       data: { mode: 'edit', item },
@@ -138,14 +131,12 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  /** 🔹 Logout */
   logout(): void {
     localStorage.clear();
     this.snack.open('👋 Logged out successfully', 'Close', { duration: 2500 });
     this.router.navigate(['/admin-login']);
   }
 
-  /** 🔹 Confirm Delete */
   confirmDelete(item: any): void {
     const ref = this.dialog.open(ConfirmDialogComponent, {
       data: {

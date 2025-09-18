@@ -1,11 +1,9 @@
 <div class="chatbot-container">
-  <!-- Floating Button -->
   <button class="chat-toggle" (click)="toggleChat()" [class.open]="isOpen">
     <span class="chat-icon" *ngIf="!isOpen">💬</span>
     <span class="close-icon" *ngIf="isOpen">✖</span>
   </button>
 
-  <!-- Chat Window -->
   <div class="chat-window" *ngIf="isOpen" [@slideInOut]>
     <div class="chat-header">
       <div class="header-content">

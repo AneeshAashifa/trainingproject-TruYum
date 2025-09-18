@@ -22,7 +22,6 @@ export class AdminGuard implements CanActivate {
     try {
       const decoded = jwtDecode<JwtPayload>(token);
 
-      // 🔹 Check if expired
       if (decoded.exp && Date.now() >= decoded.exp * 1000) {
         alert('Session expired. Please login again.');
         localStorage.clear();
@@ -30,7 +29,6 @@ export class AdminGuard implements CanActivate {
         return false;
       }
 
-      // 🔹 Check role
       if (decoded.role === 'Admin') {
         return true;
       } else {

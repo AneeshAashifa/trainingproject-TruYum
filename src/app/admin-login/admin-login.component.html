@@ -3,24 +3,20 @@
     <h2>🔑 Admin Login</h2>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <!-- Username -->
       <mat-form-field appearance="outline" class="full">
         <mat-label>Username</mat-label>
         <input matInput formControlName="username" placeholder="Enter username" />
       </mat-form-field>
 
-      <!-- Password -->
       <mat-form-field appearance="outline" class="full">
         <mat-label>Password</mat-label>
         <input matInput type="password" formControlName="password" placeholder="Enter password" />
       </mat-form-field>
 
-      <!-- Login button -->
       <button mat-flat-button color="primary" class="full" type="submit" [disabled]="loginForm.invalid">
         Login
       </button>
 
-      <!-- Back link -->
       <div class="back-link">
         <a routerLink="/user-login">⬅ Back to User Login</a>
       </div>

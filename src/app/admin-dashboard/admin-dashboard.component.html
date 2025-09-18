@@ -1,5 +1,4 @@
 <mat-card class="admin-card">
-  <!-- Enhanced Header -->
   <div class="dashboard-header">
     <div class="header-content">
       <div class="header-left">
@@ -24,12 +23,9 @@
     </div>
   </div>
 
-  <!-- Enhanced Tabs -->
   <mat-tab-group class="dashboard-tabs">
-    <!-- Menu Items Tab -->
     <mat-tab label="Menu Items">
       <div class="tab-content" *ngIf="!isLoading; else loading">
-        <!-- Enhanced Search Section -->
         <div class="search-section">
           <mat-form-field appearance="outline" class="search-bar">
             <mat-label>Search menu items</mat-label>
@@ -51,10 +47,7 @@
             Add New Item
           </button>
         </div>
-
-        <!-- Enhanced Table Container -->
         <div class="table-container">
-          <!-- No results message -->
           <div *ngIf="searchValue && dataSource.length === 0" class="no-results">
             <mat-card>
               <div class="no-results-content">
@@ -67,13 +60,10 @@
           </div>
           
           <table mat-table [dataSource]="dataSource" class="modern-table" *ngIf="dataSource.length > 0">
-          <!-- ID -->
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef>ID</th>
             <td mat-cell *matCellDef="let el">{{ el.id }}</td>
           </ng-container>
-
-          <!-- Image -->
           <ng-container matColumnDef="image">
             <th mat-header-cell *matHeaderCellDef>Image</th>
             <td mat-cell *matCellDef="let el">
@@ -81,25 +71,19 @@
             </td>
           </ng-container>
 
-          <!-- Name -->
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>Name</th>
             <td mat-cell *matCellDef="let el">{{ el.name }}</td>
           </ng-container>
-
-          <!-- Price -->
           <ng-container matColumnDef="price">
             <th mat-header-cell *matHeaderCellDef>Price</th>
             <td mat-cell *matCellDef="let el">₹{{ el.price }}</td>
           </ng-container>
-
-          <!-- Category -->
           <ng-container matColumnDef="category">
             <th mat-header-cell *matHeaderCellDef>Category</th>
             <td mat-cell *matCellDef="let el">{{ el.categoryName }}</td>
           </ng-container>
 
-          <!-- Veg -->
           <ng-container matColumnDef="veg">
             <th mat-header-cell *matHeaderCellDef>Veg</th>
             <td mat-cell *matCellDef="let el">
@@ -109,7 +93,6 @@
             </td>
           </ng-container>
 
-          <!-- Active -->
           <ng-container matColumnDef="active">
             <th mat-header-cell *matHeaderCellDef>Status</th>
             <td mat-cell *matCellDef="let el">
@@ -119,7 +102,6 @@
             </td>
           </ng-container>
 
-          <!-- Actions -->
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef>Actions</th>
             <td mat-cell *matCellDef="let el">
@@ -142,7 +124,6 @@
             </td>
           </ng-container>
 
-            <!-- Rows -->
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
           </table>
@@ -159,7 +140,6 @@
       </ng-template>
     </mat-tab>
 
-    <!-- Categories Tab -->
     <mat-tab label="Categories">
       <div class="tab-content">
         <app-admin-categories></app-admin-categories>

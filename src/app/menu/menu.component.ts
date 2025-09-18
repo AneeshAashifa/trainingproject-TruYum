@@ -78,7 +78,6 @@ export class MenuComponent implements OnInit {
         );
       },
       error: err => {
-        // Check if it's an authentication error (401 Unauthorized)
         if (err.status === 401) {
           this.toastService.showError(
             'Please Sign In First! 🔐',
@@ -110,10 +109,8 @@ export class MenuComponent implements OnInit {
     const name: string = (item?.name || '').toLowerCase();
     const category: string = (item?.categoryName || '').toLowerCase();
     const base = 'assets/images/';
-    // Prefer a file that matches the item name, then category
     const nameFile = `${slugify(item?.name)}.jpg`;
     const catFile = `${slugify(item?.categoryName)}.jpg`;
-    // Try name/category convention first. If not present, fall back to keyword map
     const tryConventional = name ? base + nameFile : (category ? base + catFile : '');
     const mapping: { keyword: string; file: string }[] = [
       { keyword: 'pizza', file: 'margherita-pizza.jpg' },
@@ -170,7 +167,6 @@ toggleFavourite(item:any){
     this.favourites.add(item.id);
   }
 
-  // Save to localStorage so it persists
   localStorage.setItem('favourites', JSON.stringify([...this.favourites]));
   }
 }

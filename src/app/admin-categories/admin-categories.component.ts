@@ -13,7 +13,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
- // optional typed interface if you have
 import { CategoryEditDialogComponent } from './category-edit-dialog.component';
 import { ConfirmDialogComponent } from '../admin-dashboard/confirm-dialog.component';
 

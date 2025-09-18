@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
     const token = localStorage.getItem('token');
     if (!token) {
       alert('❌ You must log in first!');
-      this.router.navigate(['/user-login']); // default redirect
+      this.router.navigate(['/user-login']); 
       return false;
     }
     return true;

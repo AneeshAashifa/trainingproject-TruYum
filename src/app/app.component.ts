@@ -17,7 +17,6 @@ import { ToastContainerComponent } from './shared/toast-container/toast-containe
 export class AppComponent {
   constructor(private router: Router) {}
   get isLoggedIn(): boolean {
-    // 👈 reactive check every time Angular renders
     return !!localStorage.getItem('token');
   }
   get username(): string | null {
@@ -30,6 +29,6 @@ export class AppComponent {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('role');
-    this.router.navigate(['/']); // go back to home
+    this.router.navigate(['/']); 
   }
 }

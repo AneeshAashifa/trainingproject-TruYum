@@ -5,19 +5,17 @@
     </h2>
 
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-      <!-- Username -->
+
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Username</mat-label>
         <input matInput formControlName="username" placeholder="Enter your username" required>
       </mat-form-field>
 
-      <!-- Password -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Password</mat-label>
         <input matInput type="password" formControlName="password" placeholder="Enter your password" required>
       </mat-form-field>
 
-      <!-- Buttons -->
       <div class="login-actions">
         <button mat-flat-button color="primary" type="submit" [disabled]="loginForm.invalid">
           <mat-icon>login</mat-icon> Login

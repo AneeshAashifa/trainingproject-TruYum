@@ -1,7 +1,6 @@
 <div class="cart-background">
   <div class="cart-container">
-    <!-- LEFT: Items -->
-     <!-- Empty cart message -->
+
     <div class="empty-cart" *ngIf="cart?.items?.length === 0">
       <mat-card>
         <h2>Your cart is empty 🛒</h2>
@@ -31,7 +30,7 @@
         </div>
       </mat-card>
     </div>
-    <!-- RIGHT: Price Details + Checkout -->
+
     <div class="price-summary" *ngIf="cart?.items?.length > 0">
       <mat-card>
         <h2>Price Details</h2>

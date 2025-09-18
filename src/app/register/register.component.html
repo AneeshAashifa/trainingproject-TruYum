@@ -5,8 +5,7 @@
     </h2>
 
     <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
-      
-      <!-- Username -->
+
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Username</mat-label>
         <input matInput formControlName="username" placeholder="Choose a username" required>
@@ -15,7 +14,6 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- Email -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Email</mat-label>
         <input matInput type="email" formControlName="email" placeholder="Enter your email" required>
@@ -27,7 +25,6 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- Password -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Password</mat-label>
         <input matInput type="password" formControlName="password" placeholder="Enter password" required>
@@ -39,7 +36,6 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- Confirm Password -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Confirm Password</mat-label>
         <input matInput type="password" formControlName="confirmPassword" placeholder="Re-enter password" required>
@@ -51,7 +47,6 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- Buttons -->
       <div class="register-actions">
         <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">
           <mat-icon>check_circle</mat-icon> Sign Up

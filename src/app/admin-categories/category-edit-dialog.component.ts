@@ -40,7 +40,6 @@ export class CategoryEditDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // ✅ Initialize form inside ngOnInit
     this.mode = this.data?.mode || 'add';
     this.form = this.fb.group({
       name: [this.data?.category?.name || '', Validators.required],

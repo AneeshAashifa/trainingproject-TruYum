@@ -28,7 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class UserLoginComponent {
   loginForm: FormGroup;
-  private apiUrl = 'http://localhost:5030/api/auth/login'; // ✅ Adjust to your backend
+  private apiUrl = 'http://localhost:5030/api/auth/login'; 
 
   constructor(
     private fb: FormBuilder,
